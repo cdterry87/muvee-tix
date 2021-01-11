@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <h1>Movies</h1>
+    <ul>
+      <li v-for="(movie, index) in movies" :key="index">
+        <img
+          :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+          alt="Poster"
+        />
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.overview }}</p>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld
-  }
-};
+  name: 'Home',
+  created() {
+    this.getMovies()
+  },
+  computed: {
+    ...mapState(['movies']),
+  },
+  methods: {
+    ...mapActions(['getMovies']),
+  },
+}
 </script>
