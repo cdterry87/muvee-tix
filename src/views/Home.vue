@@ -23,10 +23,10 @@ export default {
     this.getMovies()
   },
   computed: {
-    ...mapState(['movies']),
+    ...mapState(['movies'])
   },
   methods: {
-    ...mapActions(['getMovies']),
-  },
+    ...mapActions(['getMovies'])
+  }
 }
 </script>
