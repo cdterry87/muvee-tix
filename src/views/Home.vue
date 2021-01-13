@@ -1,9 +1,14 @@
 <template>
   <div>
-    <h1>Movies</h1>
-    <div class="flex">
-      <div v-for="(movie, index) in movies" :key="index">
-        <Card v-bind="getMovieDetails(movie)" />
+    <div class="container">
+      <div class="columns is-multiline">
+        <div
+          v-for="(movie, index) in movies"
+          :key="index"
+          class="column is-one-quarter"
+        >
+          <Card v-bind="getMovieDetails(movie)" />
+        </div>
       </div>
     </div>
   </div>
@@ -29,14 +34,16 @@ export default {
   methods: {
     ...mapActions(['getMovies']),
     getMovieDetails(movie) {
-      const { title, release_date, poster_path } = movie
+      const { id, title, poster_path } = movie
+      const link = `/movie/${id}`
       return {
+        id,
+        link,
         title,
         image: {
           src: `https://image.tmdb.org/t/p/w500/${poster_path}`,
           alt: `Movie Poster for ${title}`
-        },
-        release_date
+        }
       }
     }
   }

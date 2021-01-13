@@ -8,38 +8,38 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: Home
   },
   {
     path: '/movie',
     name: 'Movie',
     component: () =>
-      import(/* webpackChunkName: "movie" */ '../views/Movie.vue'),
+      import(/* webpackChunkName: "movie" */ '../views/Movie.vue')
   },
   {
     path: '/seats',
     name: 'Seats',
     component: () =>
-      import(/* webpackChunkName: "seats" */ '../views/Seats.vue'),
+      import(/* webpackChunkName: "seats" */ '../views/Seats.vue')
   },
   {
     path: '/payment',
     name: 'Payment',
     component: () =>
-      import(/* webpackChunkName: "payment" */ '../views/Payment.vue'),
+      import(/* webpackChunkName: "payment" */ '../views/Payment.vue')
   },
   {
     path: '*',
     name: 'NotFound',
     component: () =>
-      import(/* webpackChunkName: "notfound" */ '../views/NotFound.vue'),
-  },
+      import(/* webpackChunkName: "notfound" */ '../views/NotFound.vue')
+  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
+  routes
 })
 
 export default router

@@ -1,31 +1,36 @@
 <template>
-  <div class="card">
-    <div class="card__image-container">
-      <img v-bind="image" class="card__image" />
+  <a :href="link" class="card__container">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by5">
+          <img v-bind="image" />
+        </figure>
+      </div>
+      <div class="card-content has-text-centered">
+        <h2 class="title is-5">{{ title }}</h2>
+      </div>
     </div>
-    <h2 class="card__title">
-      {{ title }}
-    </h2>
-    <div class="card__details">
-      <span>Released: {{ release_date }}</span>
-    </div>
-  </div>
+  </a>
 </template>
 
 <script>
 export default {
   name: 'Card',
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
+    link: {
+      type: String,
+      required: true
+    },
     image: {
       type: Object
     },
     title: {
       type: String,
       required: true
-    },
-    release_date: {
-      type: String,
-      default: 'N/A'
     }
   }
 }

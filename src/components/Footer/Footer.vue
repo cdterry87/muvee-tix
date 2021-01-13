@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <h1>Footer</h1>
-  </div>
+  <div class="has-text-light has-text-centered my-6">&copy; 2020 Muvee Tix</div>
 </template>
 
 <script>
 export default {
-  name: 'Footer',
+  name: 'Footer'
 }
 </script>

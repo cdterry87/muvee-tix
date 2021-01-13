@@ -1,18 +1,5 @@
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
+@import '/node_modules/bulma/bulma.sass';
 
-.card {
-  height: 300px;
-
-  &__image-container {
-  }
-
-  &__image {
-    width: 200px;
-    height: auto;
-  }
+html {
+  background-color: rgb(15, 26, 43);
 }
