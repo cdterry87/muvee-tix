@@ -5,6 +5,8 @@ import movies from './movies'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  movies
+export const store = new Vuex.Store({
+  modules: {
+    movies
+  }
 })
