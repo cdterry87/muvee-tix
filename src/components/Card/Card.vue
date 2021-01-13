@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" class="card__container">
+  <router-link :to="link" class="card__container">
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by5">
@@ -10,7 +10,7 @@
         <h2 class="title is-5">{{ title }}</h2>
       </div>
     </div>
-  </a>
+  </router-link>
 </template>
 
 <script>
