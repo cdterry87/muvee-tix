@@ -5,7 +5,7 @@
         <div
           v-for="(movie, index) in movies"
           :key="index"
-          class="column is-one-quarter"
+          class="column is-one-quarter-desktop is-half-tablet is-full-mobile"
         >
           <Card v-bind="getMovieDetails(movie)" />
         </div>
@@ -16,7 +16,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('movies')
+const { mapState } = createNamespacedHelpers('movies')
 
 import Card from '../components/Card/Card'
 
@@ -25,14 +25,10 @@ export default {
   components: {
     Card
   },
-  created() {
-    this.getMovies()
-  },
   computed: {
     ...mapState(['movies'])
   },
   methods: {
-    ...mapActions(['getMovies']),
     getMovieDetails(movie) {
       const { id, title, poster_path } = movie
       const link = `/movie/${id}`

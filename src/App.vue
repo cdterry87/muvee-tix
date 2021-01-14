@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapActions } = createNamespacedHelpers('movies')
+
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
@@ -15,6 +18,12 @@ export default {
   components: {
     Header,
     Footer
+  },
+  created() {
+    this.getMovies()
+  },
+  methods: {
+    ...mapActions(['getMovies'])
   }
 }
 </script>
