@@ -18,6 +18,7 @@ export default {
     }
   },
   getters: {
-    getMovie: state => id => state.movies.find(movie => movie.id === id)
+    getMovie: state => id =>
+      state.movies.find(movie => movie.id === parseInt(id))
   }
 }

@@ -13,18 +13,6 @@ export const getMovies = async () => {
   }
 }
 
-export const getMovie = async id => {
-  try {
-    const response = await axios.get(
-      `${TVDB_API}/movie/${id}?api_key=${TVDB_API_KEY}`
-    )
-    return response
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 export const movieService = {
-  getMovies,
-  getMovie
+  getMovies
 }
