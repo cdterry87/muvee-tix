@@ -6,8 +6,8 @@
           <img v-bind="image" />
         </figure>
       </div>
-      <div class="card-content has-text-centered">
-        <h2 class="title is-5">{{ title }}</h2>
+      <div v-if="hasTitle" class="card-content has-text-centered">
+        <h2 class="title is-size-5">{{ title }}</h2>
       </div>
     </div>
   </router-link>
@@ -31,6 +31,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    hasTitle: {
+      type: Boolean,
+      default: true
     }
   }
 }
