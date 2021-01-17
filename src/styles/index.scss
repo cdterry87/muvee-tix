@@ -7,3 +7,18 @@ html {
 .container {
   padding: 30px;
 }
+
+.movie__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ticket-prices {
+  justify-content: space-between !important;
+}
+
+.ticket-price {
+  display: flex;
+  align-items: center;
+}
