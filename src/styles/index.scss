@@ -22,3 +22,16 @@ html {
   display: flex;
   align-items: center;
 }
+
+.seats-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.seat {
+  user-select: none;
+}
