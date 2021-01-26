@@ -4,7 +4,7 @@
     <div class="field">
       <div class="control">
         <div class="select">
-          <select name="date">
+          <select name="date" v-model="date" @change="onUpdate">
             <option
               v-for="(date, index) in dates"
               :key="index"
@@ -19,7 +19,7 @@
     <div class="field">
       <div class="control">
         <div class="select">
-          <select name="time">
+          <select name="time" v-model="time" @change="onUpdate">
             <option
               v-for="(time, index) in times"
               :key="index"
@@ -36,10 +36,19 @@
 
 <script>
 import { add, format } from 'date-fns'
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'MovieDateTimeSelection',
+  data() {
+    return {
+      date: format(new Date(), 'yyyy-MM-dd'),
+      time: '05:00'
+    }
+  },
   computed: {
+    ...mapState(['cart']),
     dates() {
       const dates = []
       for (let i = 0; i < 7; i++) {
@@ -75,6 +84,22 @@ export default {
           text: '11:00pm'
         }
       ]
+    }
+  },
+  mounted() {
+    this.setFieldsFromState()
+    this.onUpdate()
+  },
+  methods: {
+    ...mapActions(['setCartDate', 'setCartTime']),
+    onUpdate() {
+      this.setCartDate(this.date)
+      this.setCartTime(this.time)
+    },
+    setFieldsFromState() {
+      const { date, time } = this.cart
+      this.date = date
+      this.time = time
     }
   }
 }

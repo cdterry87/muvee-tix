@@ -16,11 +16,12 @@
                 size="2"
                 min="0"
                 max="99"
+                @change="onUpdate"
               />
             </div>
             <div class="control ml-2 ticket-price">
               <span class="tag is-info is-medium is-light">
-                ${{ adultPrice }}
+                ${{ prices.adults }}
               </span>
             </div>
             <div class="control ticket-price">
@@ -45,11 +46,12 @@
                 size="2"
                 min="0"
                 max="99"
+                @change="onUpdate"
               />
             </div>
             <div class="control ml-2 ticket-price">
               <span class="tag is-info is-medium is-light">
-                ${{ kidPrice }}
+                ${{ prices.kids }}
               </span>
             </div>
             <div class="control ticket-price">
@@ -74,11 +76,12 @@
                 size="2"
                 min="0"
                 max="99"
+                @change="onUpdate"
               />
             </div>
             <div class="control ml-2 ticket-price">
               <span class="tag is-info is-medium is-light">
-                ${{ seniorPrice }}
+                ${{ prices.seniors }}
               </span>
             </div>
             <div class="control ticket-price">
@@ -105,30 +108,48 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers('cart')
+
 export default {
   name: 'MovieTicketSelection',
   data() {
     return {
       adults: 0,
       kids: 0,
-      seniors: 0,
-      adultPrice: 14,
-      kidPrice: 10,
-      seniorPrice: 12
+      seniors: 0
     }
   },
   computed: {
+    ...mapState(['prices', 'cart']),
+    ...mapGetters(['total']),
     adultTotal() {
-      return this.adults * this.adultPrice
+      return this.adults * this.prices.adults
     },
     kidTotal() {
-      return this.kids * this.kidPrice
+      return this.kids * this.prices.kids
     },
     seniorTotal() {
-      return this.seniors * this.seniorPrice
+      return this.seniors * this.prices.seniors
+    }
+  },
+  mounted() {
+    this.setFieldsFromState()
+  },
+  methods: {
+    ...mapActions(['setCartTickets']),
+    onUpdate() {
+      this.setCartTickets({
+        adults: this.adults,
+        kids: this.kids,
+        seniors: this.seniors
+      })
     },
-    total() {
-      return this.adultTotal + this.kidTotal + this.seniorTotal
+    setFieldsFromState() {
+      const { adults, kids, seniors } = this.cart.tickets
+      this.adults = adults
+      this.kids = kids
+      this.seniors = seniors
     }
   }
 }

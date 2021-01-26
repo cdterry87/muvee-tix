@@ -17,9 +17,9 @@
           </p>
         </div>
         <hr />
-        <MovieDateTimeSelection @onDateTimeUpdate="onDateTimeUpdate" />
+        <MovieDateTimeSelection />
         <hr />
-        <MovieTicketSelection @onTicketUpdate="onTicketUpdate" />
+        <MovieTicketSelection />
       </div>
     </div>
   </div>
@@ -28,6 +28,7 @@
 <script>
 import { setMovieDetails } from '../utils/movies'
 import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('cart')
 const { mapGetters } = createNamespacedHelpers('movies')
 
 import Card from '../components/Card/Card'
@@ -54,16 +55,17 @@ export default {
   },
   created() {
     this.movie = { ...this.getMovie(this.id) }
+    this.setCartMovie(this.id)
   },
   computed: {
+    ...mapState(['cart']),
     ...mapGetters(['getMovie'])
   },
   methods: {
+    ...mapActions(['setCartMovie']),
     getMovieDetails(movie) {
       return setMovieDetails(movie)
-    },
-    onDateTimeUpdate() {},
-    onTicketUpdate() {}
+    }
   }
 }
 </script>
