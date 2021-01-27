@@ -7,9 +7,15 @@
           :key="columnIndex"
           class="seat"
           :class="{
-            'has-background-link-light': selectedSeats.includes(
-              getSeatByRowAndColumn(row, column)
-            )
+            'has-background-success-light':
+              totalSeatsSelected === totalSeats &&
+              selectedSeats.includes(getSeatByRowAndColumn(row, column)),
+            'has-background-danger-light':
+              totalSeatsSelected > totalSeats &&
+              selectedSeats.includes(getSeatByRowAndColumn(row, column)),
+            'has-background-link-light':
+              totalSeatsSelected < totalSeats &&
+              selectedSeats.includes(getSeatByRowAndColumn(row, column))
           }"
         >
           <label class="seat__label" :for="getSeatByRowAndColumn(row, column)">
@@ -32,7 +38,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('cart')
+const { mapState, mapActions, mapGetters } = createNamespacedHelpers('cart')
 
 export default {
   name: 'SeatSelection',
@@ -53,6 +59,7 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
+    ...mapGetters(['totalSeats', 'totalSeatsSelected']),
     reversedRows() {
       return [...Array(this.rows).keys()].reverse()
     }
