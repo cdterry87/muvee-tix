@@ -54,6 +54,7 @@ export default {
     }
   },
   created() {
+    if (this.cart.movie !== this.id) this.resetCartState()
     this.movie = { ...this.getMovie(this.id) }
     this.setCartMovie(this.id)
   },
@@ -62,7 +63,7 @@ export default {
     ...mapGetters(['getMovie'])
   },
   methods: {
-    ...mapActions(['setCartMovie']),
+    ...mapActions(['setCartMovie', 'resetCartState']),
     getMovieDetails(movie) {
       return setMovieDetails(movie)
     }

@@ -5,6 +5,7 @@
       <div class="control">
         <div class="select">
           <select name="date" v-model="date" @change="onUpdate">
+            <option value="">-- Select a date --</option>
             <option
               v-for="(date, index) in dates"
               :key="index"
@@ -20,6 +21,7 @@
       <div class="control">
         <div class="select">
           <select name="time" v-model="time" @change="onUpdate">
+            <option value="">-- Select a time --</option>
             <option
               v-for="(time, index) in times"
               :key="index"

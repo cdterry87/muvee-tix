@@ -3,7 +3,7 @@
     <div class="box">
       <h2 class="title is-size-4 has-text-centered">Select your seats</h2>
       <div
-        class="notification subtitle is-size-6 has-text-centered is-light"
+        class="mt-2 notification subtitle is-size-6 has-text-centered is-light"
         :class="{
           'is-success': seatsRemaining === 0,
           'is-danger': seatsRemaining < 0,

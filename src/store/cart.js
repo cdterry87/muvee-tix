@@ -4,28 +4,33 @@ import {
   SET_CART_TIME,
   SET_CART_TICKETS,
   SET_CART_SEATS,
-  SET_CART_PAYMENT
+  SET_CART_PAYMENT,
+  RESET_CART_STATE
 } from './mutation-types'
 
-const state = () => ({
-  cart: {
-    movie: '',
-    date: '',
-    time: '',
-    tickets: {
-      adults: 0,
-      kids: 0,
-      seniors: 0
+const getDefaultState = () => {
+  return {
+    cart: {
+      movie: '',
+      date: '',
+      time: '',
+      tickets: {
+        adults: 0,
+        kids: 0,
+        seniors: 0
+      },
+      seats: [],
+      payment: {}
     },
-    seats: [],
-    payment: {}
-  },
-  prices: {
-    adults: 14,
-    kids: 10,
-    seniors: 12
+    prices: {
+      adults: 14,
+      kids: 10,
+      seniors: 12
+    }
   }
-})
+}
+
+const state = getDefaultState()
 
 const getters = {
   movie: state => state.cart.movie,
@@ -50,6 +55,9 @@ const getters = {
 }
 
 const actions = {
+  resetCartState({ commit }) {
+    commit(RESET_CART_STATE)
+  },
   setCartMovie({ commit }, movie) {
     commit(SET_CART_MOVIE, movie)
   },
@@ -71,6 +79,9 @@ const actions = {
 }
 
 const mutations = {
+  [RESET_CART_STATE](state) {
+    Object.assign(state, getDefaultState())
+  },
   [SET_CART_MOVIE](state, movie) {
     state.cart.movie = movie
   },
