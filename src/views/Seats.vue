@@ -17,7 +17,7 @@
       <hr />
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">
-          <router-link to="/movie">
+          <router-link :to="`/movie/${movie}`">
             <button class="button is-info">Previous</button>
           </router-link>
         </div>
@@ -47,7 +47,7 @@ export default {
     SeatSelection
   },
   computed: {
-    ...mapGetters(['totalSeats', 'totalSeatsSelected']),
+    ...mapGetters(['movie', 'totalSeats', 'totalSeatsSelected']),
     seatsRemaining() {
       return this.totalSeats - this.totalSeatsSelected
     },
