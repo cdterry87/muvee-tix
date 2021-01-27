@@ -34,11 +34,18 @@ const getters = {
   tickets: state => state.cart.tickets,
   seats: state => state.cart.seats,
   payment: state => state.cart.payment,
-  total: state => {
+  totalPrice: state => {
     const adultTotalPrice = state.cart.tickets.adults * state.prices.adults
     const kidTotalPrice = state.cart.tickets.kids * state.prices.kids
     const seniorTotalPrice = state.cart.tickets.seniors * state.prices.seniors
     return adultTotalPrice + kidTotalPrice + seniorTotalPrice
+  },
+  totalSeats: state => {
+    const { adults, kids, seniors } = state.cart.tickets
+    return parseInt(adults) + parseInt(kids) + parseInt(seniors)
+  },
+  totalSeatsSelected: state => {
+    return state.cart.seats.length
   }
 }
 

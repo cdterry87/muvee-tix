@@ -95,11 +95,13 @@
     </div>
     <hr />
     <div>
-      <div class="tag is-success is-large">Your total: ${{ total }}</div>
+      <div class="tag is-success is-large">Your total: ${{ totalPrice }}</div>
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">
           <router-link to="/seats">
-            <button class="button is-info" :disabled="total === 0">Next</button>
+            <button class="button is-info" :disabled="totalPrice === 0">
+              Next
+            </button>
           </router-link>
         </div>
       </div>
@@ -122,7 +124,7 @@ export default {
   },
   computed: {
     ...mapState(['prices', 'cart']),
-    ...mapGetters(['total']),
+    ...mapGetters(['totalPrice']),
     adultTotal() {
       return this.adults * this.prices.adults
     },
