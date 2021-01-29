@@ -56,7 +56,7 @@ export default {
   created() {
     if (this.cart.movie !== this.id) this.resetCartState()
     this.movie = { ...this.getMovie(this.id) }
-    this.setCartMovie(this.id)
+    this.setCartMovie(this.movie)
   },
   computed: {
     ...mapState(['cart']),

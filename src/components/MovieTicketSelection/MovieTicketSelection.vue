@@ -26,7 +26,7 @@
             </div>
             <div class="control ticket-price">
               <span class="tag is-success is-medium is-light">
-                ${{ adultTotal }}
+                ${{ totalPrices.adults }}
               </span>
             </div>
           </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="control ticket-price">
               <span class="tag is-success is-medium is-light">
-                ${{ kidTotal }}
+                ${{ totalPrices.kids }}
               </span>
             </div>
           </div>
@@ -86,7 +86,7 @@
             </div>
             <div class="control ticket-price">
               <span class="tag is-success is-medium is-light">
-                ${{ seniorTotal }}
+                ${{ totalPrices.seniors }}
               </span>
             </div>
           </div>
@@ -95,11 +95,13 @@
     </div>
     <hr />
     <div>
-      <div class="tag is-success is-large">Your total: ${{ totalPrice }}</div>
+      <div class="tag is-success is-large">
+        Your total: ${{ totalPrices.total }}
+      </div>
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">
           <router-link to="/seats">
-            <button class="button is-info" :disabled="totalPrice === 0">
+            <button class="button is-info" :disabled="totalPrices.total === 0">
               Next
             </button>
           </router-link>
@@ -124,16 +126,7 @@ export default {
   },
   computed: {
     ...mapState(['prices', 'cart']),
-    ...mapGetters(['totalPrice']),
-    adultTotal() {
-      return this.adults * this.prices.adults
-    },
-    kidTotal() {
-      return this.kids * this.prices.kids
-    },
-    seniorTotal() {
-      return this.seniors * this.prices.seniors
-    }
+    ...mapGetters(['totalPrices'])
   },
   mounted() {
     this.setFieldsFromState()

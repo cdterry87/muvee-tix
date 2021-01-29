@@ -20,7 +20,13 @@ const getDefaultState = () => {
         seniors: 0
       },
       seats: [],
-      payment: {}
+      payment: {
+        type: '',
+        card: '',
+        expirationMonth: '',
+        expirationYear: '',
+        cvv: ''
+      }
     },
     prices: {
       adults: 14,
@@ -39,11 +45,17 @@ const getters = {
   tickets: state => state.cart.tickets,
   seats: state => state.cart.seats,
   payment: state => state.cart.payment,
-  totalPrice: state => {
+  totalPrices: state => {
     const adultTotalPrice = state.cart.tickets.adults * state.prices.adults
     const kidTotalPrice = state.cart.tickets.kids * state.prices.kids
     const seniorTotalPrice = state.cart.tickets.seniors * state.prices.seniors
-    return adultTotalPrice + kidTotalPrice + seniorTotalPrice
+
+    return {
+      adults: adultTotalPrice,
+      kids: kidTotalPrice,
+      seniors: seniorTotalPrice,
+      total: adultTotalPrice + kidTotalPrice + seniorTotalPrice
+    }
   },
   totalSeats: state => {
     const { adults, kids, seniors } = state.cart.tickets
