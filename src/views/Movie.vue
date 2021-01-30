@@ -54,8 +54,11 @@ export default {
     }
   },
   created() {
-    if (this.cart.movie !== this.id) this.resetCartState()
     this.movie = { ...this.getMovie(this.id) }
+
+    if (JSON.stringify(this.cart.movie) !== JSON.stringify(this.movie))
+      this.resetCartState()
+
     this.setCartMovie(this.movie)
   },
   computed: {
