@@ -69,7 +69,7 @@ const mastercard = {
           type: 'text',
           placeholder: '0000 0000 0000 0000',
           maxlength: '19',
-          pattern: '^4(?:\\d{12}|\\d{15})$',
+          pattern: '^3(?:\\d{12}|\\d{15})$',
           class: 'input',
           required: true
         }
@@ -163,10 +163,66 @@ const americanexpress = {
   }
 }
 
+const discover = {
+  label: 'Discover',
+  value: 'discover',
+  fields: {
+    columns: [
+      {
+        component: 'input',
+        label: 'Card Number',
+        icon: 'fas fa-credit-card',
+        class: 'is-full',
+        attributes: {
+          name: 'number',
+          model: 'number',
+          type: 'text',
+          placeholder: '00000 00000 00000',
+          maxlength: '17',
+          pattern: '^6(?:\\d{12}|\\d{15})$',
+          class: 'input',
+          required: true
+        }
+      },
+      {
+        component: 'input',
+        label: 'Expiration Date',
+        class: 'is-half',
+        attributes: {
+          name: 'expiration',
+          model: 'expiration',
+          type: 'text',
+          placeholder: 'MM/YY',
+          maxlength: '5',
+          pattern: '(0[1-9]|1[0-2])\\/[0-9]{2}',
+          class: 'input',
+          required: true
+        }
+      },
+      {
+        component: 'input',
+        label: 'CVV',
+        class: 'is-half',
+        attributes: {
+          name: 'cvv',
+          model: 'cvv',
+          type: 'text',
+          placeholder: '000',
+          maxlength: '3',
+          pattern: '^[0-9]{3}$',
+          class: 'input',
+          required: true
+        }
+      }
+    ]
+  }
+}
+
 const cards = {
   visa,
   mastercard,
-  americanexpress
+  americanexpress,
+  discover
 }
 
 export default cards
