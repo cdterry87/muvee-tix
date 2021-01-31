@@ -23,8 +23,7 @@ const getDefaultState = () => {
       payment: {
         type: '',
         card: '',
-        expirationMonth: '',
-        expirationYear: '',
+        expiration: '',
         cvv: ''
       }
     },
