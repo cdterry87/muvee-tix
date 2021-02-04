@@ -12,7 +12,7 @@ const visa = {
           name: 'number',
           model: 'number',
           type: 'text',
-          placeholder: '0000 0000 0000 0000',
+          placeholder: '4000 0000 0000 0000',
           maxlength: '19',
           pattern: '^4(?:\\d{12}|\\d{15})$',
           class: 'input',
@@ -67,7 +67,7 @@ const mastercard = {
           name: 'number',
           model: 'number',
           type: 'text',
-          placeholder: '0000 0000 0000 0000',
+          placeholder: '3000 0000 0000 0000',
           maxlength: '19',
           pattern: '^3(?:\\d{12}|\\d{15})$',
           class: 'input',
@@ -124,7 +124,7 @@ const americanexpress = {
           type: 'text',
           placeholder: '0000 000000 00000',
           maxlength: '17',
-          pattern: '',
+          pattern: '^(?:34|37)\\d{13}$',
           class: 'input',
           required: true
         }
@@ -177,9 +177,9 @@ const discover = {
           name: 'number',
           model: 'number',
           type: 'text',
-          placeholder: '00000 00000 00000',
+          placeholder: '6000 0000 0000 0000',
           maxlength: '17',
-          pattern: '^6(?:\\d{12}|\\d{15})$',
+          pattern: '^6\\d{5,}$',
           class: 'input',
           required: true
         }
