@@ -1,3 +1,5 @@
+import { cartService } from '../services/cart'
+
 import {
   SET_CART_MOVIE,
   SET_CART_DATE,
@@ -5,7 +7,8 @@ import {
   SET_CART_TICKETS,
   SET_CART_SEATS,
   SET_CART_PAYMENT,
-  RESET_CART_STATE
+  RESET_CART_STATE,
+  GET_TAXES
 } from './mutation-types'
 
 const getDefaultState = () => {
@@ -25,7 +28,8 @@ const getDefaultState = () => {
         card: '',
         expiration: '',
         cvv: ''
-      }
+      },
+      taxes: ''
     },
     prices: {
       adults: 14,
@@ -62,6 +66,13 @@ const getters = {
   },
   totalSeatsSelected: state => {
     return state.cart.seats.length
+  },
+  calculatedTaxAmounts: (state, getters) => {
+    const calculatedTax = state.cart.taxes * getters.totalPrices.total
+    return {
+      calculatedTax,
+      totalWithTax: calculatedTax + getters.totalPrices.total
+    }
   }
 }
 
@@ -86,6 +97,10 @@ const actions = {
   },
   setCartPayment({ commit }, payment) {
     commit(SET_CART_PAYMENT, payment)
+  },
+  getTaxes({ commit }) {
+    const taxes = cartService.getTaxes()
+    commit(GET_TAXES, taxes)
   }
 }
 
@@ -110,6 +125,9 @@ const mutations = {
   },
   [SET_CART_PAYMENT](state, payment) {
     state.cart.payment = payment
+  },
+  [GET_TAXES](state, taxes) {
+    state.cart.taxes = taxes
   }
 }
 

@@ -7,8 +7,7 @@
     <Card v-bind="getMovieDetails(cart.movie)" :has-title="false" />
     <table class="mt-4 table is-narrow is-fullwidth">
       <tr>
-        <th></th>
-        <th>Tickets</th>
+        <th colspan="2">Tickets</th>
         <th>Total</th>
       </tr>
       <tr v-if="cart.tickets.adults">
@@ -26,9 +25,13 @@
         <td>{{ cart.tickets.seniors }}</td>
         <td>${{ totalPrices.seniors }}</td>
       </tr>
+      <tr v-if="calculatedTaxAmounts.calculatedTax">
+        <td colspan="2">Taxes:</td>
+        <td>${{ calculatedTaxAmounts.calculatedTax }}</td>
+      </tr>
       <tr>
         <td class="has-text-weight-bold" colspan="2">Total:</td>
-        <td>${{ totalPrices.total }}</td>
+        <td>${{ calculatedTaxAmounts.totalWithTax }}</td>
       </tr>
     </table>
   </div>
@@ -38,7 +41,7 @@
 import Card from '../Card/Card'
 import { setMovieDetails } from '../../utils/movies'
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapGetters } = createNamespacedHelpers('cart')
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'Summary',
@@ -47,9 +50,13 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalPrices'])
+    ...mapGetters(['totalPrices', 'calculatedTaxAmounts'])
+  },
+  created() {
+    this.getTaxes()
   },
   methods: {
+    ...mapActions(['getTaxes']),
     getMovieDetails(movie) {
       return setMovieDetails(movie)
     }

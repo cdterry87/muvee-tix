@@ -24,7 +24,7 @@
                 class="column"
                 :class="column.class"
                 v-for="(column, columnIndex) in field.columns"
-                :key="`column.${cardIndex}.${columnIndex}`"
+                :key="`column.${columnIndex}`"
               >
                 <div class="field">
                   <label class="label">{{ column.label }}</label>
