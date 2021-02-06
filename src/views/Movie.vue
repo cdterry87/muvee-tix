@@ -20,6 +20,15 @@
         <MovieDateTimeSelection />
         <hr />
         <MovieTicketSelection />
+        <div class="field is-grouped is-grouped-centered mt-4">
+          <div class="control">
+            <router-link to="/seats">
+              <button class="button is-info" :disabled="!canProceed">
+                Next
+              </button>
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -63,7 +72,15 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['getMovie'])
+    ...mapGetters(['getMovie']),
+    canProceed() {
+      const ticketCount = Object.values(this.cart.tickets).reduce(
+        (acc, curr) => {
+          return parseInt(acc) + parseInt(curr)
+        }
+      )
+      return !!this.cart.date && !!this.cart.time && ticketCount
+    }
   },
   methods: {
     ...mapActions(['setCartMovie', 'resetCartState']),

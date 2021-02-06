@@ -98,15 +98,6 @@
       <div class="tag is-success is-large">
         Your total: ${{ totalPrices.total }}
       </div>
-      <div class="field is-grouped is-grouped-centered mt-4">
-        <div class="control">
-          <router-link to="/seats">
-            <button class="button is-info" :disabled="totalPrices.total === 0">
-              Next
-            </button>
-          </router-link>
-        </div>
-      </div>
     </div>
   </div>
 </template>
