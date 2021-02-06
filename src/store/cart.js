@@ -68,10 +68,12 @@ const getters = {
     return state.cart.seats.length
   },
   calculatedTaxAmounts: (state, getters) => {
-    const calculatedTax = state.cart.taxes * getters.totalPrices.total
     return {
-      calculatedTax,
-      totalWithTax: calculatedTax + getters.totalPrices.total
+      calculatedTax: (state.cart.taxes * getters.totalPrices.total).toFixed(2),
+      totalWithTax: (
+        state.cart.taxes * getters.totalPrices.total +
+        getters.totalPrices.total
+      ).toFixed(2)
     }
   }
 }
