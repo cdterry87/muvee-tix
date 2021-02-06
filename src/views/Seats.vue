@@ -17,7 +17,7 @@
       <hr />
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">
-          <router-link :to="`/movie/${movie}`">
+          <router-link :to="`/movie/${movie.id}`">
             <button class="button is-info">Previous</button>
           </router-link>
         </div>
