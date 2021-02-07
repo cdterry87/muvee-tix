@@ -23,6 +23,7 @@ const getDefaultState = () => {
         seniors: 0
       },
       seats: [],
+      snacks: [],
       payment: {
         type: '',
         card: '',
@@ -47,6 +48,7 @@ const getters = {
   time: state => state.cart.time,
   tickets: state => state.cart.tickets,
   seats: state => state.cart.seats,
+  snacks: state => state.cart.snacks,
   payment: state => state.cart.payment,
   totalPrices: state => {
     const adultTotalPrice = state.cart.tickets.adults * state.prices.adults

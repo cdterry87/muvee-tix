@@ -50,7 +50,7 @@
       <hr />
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">
-          <router-link to="/seats">
+          <router-link to="/snacks">
             <button class="button is-info">Previous</button>
           </router-link>
         </div>
@@ -71,13 +71,11 @@ export default {
   name: 'PaymentMethods',
   data() {
     return {
-      type: 'visa'
+      type: 'visa',
+      cards
     }
   },
   computed: {
-    cards() {
-      return cards
-    },
     fields() {
       return cards[this.type]
     }

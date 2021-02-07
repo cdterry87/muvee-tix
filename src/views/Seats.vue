@@ -22,7 +22,7 @@
           </router-link>
         </div>
         <div class="control">
-          <router-link to="/payment">
+          <router-link to="/snacks">
             <button
               class="button is-info"
               :disabled="totalSeats !== totalSeatsSelected"

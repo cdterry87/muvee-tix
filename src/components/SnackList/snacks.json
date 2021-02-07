@@ -1,0 +1,67 @@
+{
+  "drinks": {
+    "title": "Drinks",
+    "items": [
+      {
+        "title": "Water",
+        "image": "",
+        "price": "2"
+      },
+      {
+        "title": "Soda",
+        "image": "",
+        "price": "3.25"
+      },
+      {
+        "title": "Beer",
+        "image": "",
+        "price": "4.5"
+      }
+    ]
+  },
+  "food": {
+    "title": "Food",
+    "items": [
+      {
+        "title": "Popcorn",
+        "image": "",
+        "price": "2"
+      },
+      {
+        "title": "Pretzel",
+        "image": "",
+        "price": "2.5"
+      },
+      {
+        "title": "Nachos",
+        "image": "",
+        "price": "3.75"
+      },
+      {
+        "title": "Hot Dog",
+        "image": "",
+        "price": "3.25"
+      }
+    ]
+  },
+  "candy": {
+    "title": "Candy",
+    "items": [
+      {
+        "title": "M&M's",
+        "image": "",
+        "price": "2.25"
+      },
+      {
+        "title": "Sour Patch Kids",
+        "image": "",
+        "price": "2.5"
+      },
+      {
+        "title": "Gummy Worms",
+        "image": "",
+        "price": "3"
+      }
+    ]
+  }
+}
