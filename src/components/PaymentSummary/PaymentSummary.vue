@@ -44,7 +44,7 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapGetters, mapActions } = createNamespacedHelpers('cart')
 
 export default {
-  name: 'Summary',
+  name: 'PaymentSummary',
   components: {
     Card
   },

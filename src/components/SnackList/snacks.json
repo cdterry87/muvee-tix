@@ -4,17 +4,26 @@
     "items": [
       {
         "title": "Water",
-        "image": "",
+        "name": "water",
+        "image": "water.png",
         "price": "2"
       },
       {
         "title": "Soda",
-        "image": "",
+        "name": "soda",
+        "image": "soda.png",
         "price": "3.25"
       },
       {
+        "title": "Fruit Juice",
+        "name": "juice",
+        "image": "juice.png",
+        "price": "3"
+      },
+      {
         "title": "Beer",
-        "image": "",
+        "name": "beer",
+        "image": "beer.png",
         "price": "4.5"
       }
     ]
@@ -24,22 +33,26 @@
     "items": [
       {
         "title": "Popcorn",
-        "image": "",
+        "name": "popcorn",
+        "image": "popcorn.png",
         "price": "2"
       },
       {
         "title": "Pretzel",
-        "image": "",
+        "name": "pretzel",
+        "image": "pretzel.png",
         "price": "2.5"
       },
       {
         "title": "Nachos",
-        "image": "",
+        "name": "nachos",
+        "image": "nachos.png",
         "price": "3.75"
       },
       {
         "title": "Hot Dog",
-        "image": "",
+        "name": "hotdog",
+        "image": "hotdog.png",
         "price": "3.25"
       }
     ]
@@ -49,17 +62,26 @@
     "items": [
       {
         "title": "M&M's",
-        "image": "",
+        "name": "mms",
+        "image": "mms.png",
         "price": "2.25"
       },
       {
         "title": "Sour Patch Kids",
-        "image": "",
+        "name": "sourpatch",
+        "image": "sourpatch.png",
         "price": "2.5"
       },
       {
+        "title": "Reese's Pieces",
+        "name": "reeses",
+        "image": "reeses.png",
+        "price": "2.75"
+      },
+      {
         "title": "Gummy Worms",
-        "image": "",
+        "name": "gummyworms",
+        "image": "gummyworms.png",
         "price": "3"
       }
     ]

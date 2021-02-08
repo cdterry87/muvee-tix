@@ -5,7 +5,7 @@
         <PaymentMethods />
       </div>
       <div class="column is-one-third">
-        <Summary />
+        <PaymentSummary />
       </div>
     </div>
   </div>
@@ -14,14 +14,14 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 import PaymentMethods from '../components/PaymentMethods/PaymentMethods'
-import Summary from '../components/Summary/Summary'
+import PaymentSummary from '../components/PaymentSummary/PaymentSummary'
 const { mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'Payment',
   components: {
     PaymentMethods,
-    Summary
+    PaymentSummary
   },
   methods: {
     ...mapActions([''])
