@@ -25,7 +25,10 @@
               </span>
             </div>
             <div class="control ticket-price">
-              <span class="tag is-success is-medium is-light">
+              <span
+                class="tag is-medium is-light"
+                :class="{ 'is-success': adults > 0 }"
+              >
                 ${{ totalPrices.adults }}
               </span>
             </div>
@@ -55,7 +58,10 @@
               </span>
             </div>
             <div class="control ticket-price">
-              <span class="tag is-success is-medium is-light">
+              <span
+                class="tag is-medium is-light"
+                :class="{ 'is-success': kids > 0 }"
+              >
                 ${{ totalPrices.kids }}
               </span>
             </div>
@@ -85,7 +91,10 @@
               </span>
             </div>
             <div class="control ticket-price">
-              <span class="tag is-success is-medium is-light">
+              <span
+                class="tag is-medium is-light"
+                :class="{ 'is-success': seniors > 0 }"
+              >
                 ${{ totalPrices.seniors }}
               </span>
             </div>
@@ -95,7 +104,7 @@
     </div>
     <hr />
     <div>
-      <div class="tag is-success is-large">
+      <div v-if="totalPrices.total" class="tag is-success is-large">
         Your total: ${{ totalPrices.total }}
       </div>
     </div>
