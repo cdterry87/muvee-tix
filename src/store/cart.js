@@ -6,6 +6,7 @@ import {
   SET_CART_TIME,
   SET_CART_TICKETS,
   SET_CART_SEATS,
+  SET_CART_SNACKS,
   SET_CART_PAYMENT,
   RESET_CART_STATE,
   GET_TAXES
@@ -23,7 +24,7 @@ const getDefaultState = () => {
         seniors: 0
       },
       seats: [],
-      snacks: [],
+      snacks: {},
       payment: {
         type: '',
         card: '',
@@ -99,6 +100,9 @@ const actions = {
   setCartSeats({ commit }, seats) {
     commit(SET_CART_SEATS, seats)
   },
+  setCartSnacks({ commit }, snacks) {
+    commit(SET_CART_SNACKS, snacks)
+  },
   setCartPayment({ commit }, payment) {
     commit(SET_CART_PAYMENT, payment)
   },
@@ -126,6 +130,9 @@ const mutations = {
   },
   [SET_CART_SEATS](state, seats) {
     state.cart.seats = seats
+  },
+  [SET_CART_SNACKS](state, snacks) {
+    state.cart.snacks = snacks
   },
   [SET_CART_PAYMENT](state, payment) {
     state.cart.payment = payment

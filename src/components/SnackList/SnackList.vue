@@ -12,8 +12,12 @@
         v-for="(item, itemIndex) in category.items"
         :key="itemIndex"
         v-bind="item"
+        @onSnackListItemChange="onSnackListItemChange"
       />
       <hr />
+    </div>
+    <div class="has-text-centered">
+      <div class="tag is-success is-large">Your total:</div>
     </div>
     <div class="field is-grouped is-grouped-centered mt-4">
       <div class="control">
@@ -31,9 +35,11 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
 import snacks from './snacks.json'
-
 import SnackListItem from '../SnackListItem/SnackListItem'
+
+const { mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'SnackList',
@@ -42,7 +48,16 @@ export default {
   },
   data() {
     return {
-      snacks
+      snacks,
+      addedSnacks: {}
+    }
+  },
+  methods: {
+    ...mapActions(['setCartSnacks']),
+    onSnackListItemChange(item) {
+      this.addedSnacks[item.name] = item.quantity
+
+      this.setCartSnacks(this.addedSnacks)
     }
   }
 }
