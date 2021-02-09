@@ -51,7 +51,7 @@ const getters = {
   seats: state => state.cart.seats,
   snacks: state => state.cart.snacks,
   payment: state => state.cart.payment,
-  totalPrices: state => {
+  totalTicketPrices: state => {
     const adultTotalPrice = state.cart.tickets.adults * state.prices.adults
     const kidTotalPrice = state.cart.tickets.kids * state.prices.kids
     const seniorTotalPrice = state.cart.tickets.seniors * state.prices.seniors
@@ -70,12 +70,21 @@ const getters = {
   totalSeatsSelected: state => {
     return state.cart.seats.length
   },
+  totalSnackPrices: state => {
+    let total = 0
+    Object.values(state.cart.snacks).forEach(snack => {
+      total = total + snack.price * snack.quantity
+    })
+    return total
+  },
   calculatedTaxAmounts: (state, getters) => {
     return {
-      calculatedTax: (state.cart.taxes * getters.totalPrices.total).toFixed(2),
+      calculatedTax: (
+        state.cart.taxes * getters.totalTicketPrices.total
+      ).toFixed(2),
       totalWithTax: (
-        state.cart.taxes * getters.totalPrices.total +
-        getters.totalPrices.total
+        state.cart.taxes * getters.totalTicketPrices.total +
+        getters.totalTicketPrices.total
       ).toFixed(2)
     }
   }
@@ -132,7 +141,7 @@ const mutations = {
     state.cart.seats = seats
   },
   [SET_CART_SNACKS](state, snacks) {
-    state.cart.snacks = snacks
+    state.cart.snacks = { ...snacks }
   },
   [SET_CART_PAYMENT](state, payment) {
     state.cart.payment = payment

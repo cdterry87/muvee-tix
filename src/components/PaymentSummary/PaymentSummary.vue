@@ -13,17 +13,17 @@
       <tr v-if="cart.tickets.adults">
         <td>Adults</td>
         <td>{{ cart.tickets.adults }}</td>
-        <td>${{ totalPrices.adults }}</td>
+        <td>${{ totalTicketPrices.adults }}</td>
       </tr>
       <tr v-if="cart.tickets.kids">
         <td>Kids</td>
         <td>{{ cart.tickets.kids }}</td>
-        <td>${{ totalPrices.kids }}</td>
+        <td>${{ totalTicketPrices.kids }}</td>
       </tr>
       <tr v-if="cart.tickets.seniors">
         <td>Seniors</td>
         <td>{{ cart.tickets.seniors }}</td>
-        <td>${{ totalPrices.seniors }}</td>
+        <td>${{ totalTicketPrices.seniors }}</td>
       </tr>
       <tr v-if="calculatedTaxAmounts.calculatedTax">
         <td colspan="2">Taxes:</td>
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalPrices', 'calculatedTaxAmounts'])
+    ...mapGetters(['totalTicketPrices', 'calculatedTaxAmounts'])
   },
   created() {
     this.getTaxes()

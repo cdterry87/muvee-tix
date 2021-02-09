@@ -40,6 +40,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapGetters } = createNamespacedHelpers('cart')
+
 export default {
   name: 'SnackListItem',
   props: {
@@ -66,8 +69,20 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['snacks']),
+    quantityProxy() {
+      return this.snacks[this.name]?.quantity || 0
+    },
     total() {
       return (this.quantity * this.price).toFixed(2)
+    }
+  },
+  watch: {
+    quantityProxy: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) this.quantity = newValue
+      }
     }
   },
   methods: {
@@ -77,7 +92,8 @@ export default {
     onChange() {
       this.$emit('onSnackListItemChange', {
         name: this.name,
-        quantity: this.quantity
+        quantity: this.quantity,
+        price: this.price
       })
     }
   }

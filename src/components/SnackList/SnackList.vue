@@ -16,8 +16,10 @@
       />
       <hr />
     </div>
-    <div class="has-text-centered">
-      <div class="tag is-success is-large">Your total:</div>
+    <div v-if="totalSnackPrices" class="has-text-centered">
+      <div class="tag is-success is-large">
+        Your total: ${{ totalSnackPrices }}
+      </div>
     </div>
     <div class="field is-grouped is-grouped-centered mt-4">
       <div class="control">
@@ -39,7 +41,7 @@ import { createNamespacedHelpers } from 'vuex'
 import snacks from './snacks.json'
 import SnackListItem from '../SnackListItem/SnackListItem'
 
-const { mapActions } = createNamespacedHelpers('cart')
+const { mapActions, mapState, mapGetters } = createNamespacedHelpers('cart')
 
 export default {
   name: 'SnackList',
@@ -52,12 +54,26 @@ export default {
       addedSnacks: {}
     }
   },
+  computed: {
+    ...mapState(['cart']),
+    ...mapGetters(['totalSnackPrices'])
+  },
+  mounted() {
+    this.setSnacksFromState()
+  },
   methods: {
     ...mapActions(['setCartSnacks']),
     onSnackListItemChange(item) {
-      this.addedSnacks[item.name] = item.quantity
+      this.addedSnacks[item.name] = {
+        quantity: item.quantity,
+        price: item.price
+      }
 
       this.setCartSnacks(this.addedSnacks)
+    },
+    setSnacksFromState() {
+      if (!this.cart.snacks) return
+      this.addedSnacks = this.cart.snacks
     }
   }
 }

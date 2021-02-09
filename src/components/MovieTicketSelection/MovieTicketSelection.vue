@@ -29,7 +29,7 @@
                 class="tag is-medium is-light"
                 :class="{ 'is-success': adults > 0 }"
               >
-                ${{ totalPrices.adults }}
+                ${{ totalTicketPrices.adults }}
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@
                 class="tag is-medium is-light"
                 :class="{ 'is-success': kids > 0 }"
               >
-                ${{ totalPrices.kids }}
+                ${{ totalTicketPrices.kids }}
               </span>
             </div>
           </div>
@@ -95,7 +95,7 @@
                 class="tag is-medium is-light"
                 :class="{ 'is-success': seniors > 0 }"
               >
-                ${{ totalPrices.seniors }}
+                ${{ totalTicketPrices.seniors }}
               </span>
             </div>
           </div>
@@ -104,8 +104,8 @@
     </div>
     <hr />
     <div>
-      <div v-if="totalPrices.total" class="tag is-success is-large">
-        Your total: ${{ totalPrices.total }}
+      <div v-if="totalTicketPrices.total" class="tag is-success is-large">
+        Your total: ${{ totalTicketPrices.total }}
       </div>
     </div>
   </div>
@@ -126,7 +126,7 @@ export default {
   },
   computed: {
     ...mapState(['prices', 'cart']),
-    ...mapGetters(['totalPrices'])
+    ...mapGetters(['totalTicketPrices'])
   },
   mounted() {
     this.setFieldsFromState()
