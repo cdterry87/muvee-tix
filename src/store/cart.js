@@ -15,7 +15,7 @@ import {
 const getDefaultState = () => {
   return {
     cart: {
-      movie: '',
+      movie: {},
       date: '',
       time: '',
       tickets: {
