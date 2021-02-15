@@ -16,6 +16,7 @@
                 size="2"
                 min="0"
                 max="99"
+                data-testid="input-adults"
                 @change="onUpdate"
               />
             </div>
@@ -49,6 +50,7 @@
                 size="2"
                 min="0"
                 max="99"
+                data-testid="input-kids"
                 @change="onUpdate"
               />
             </div>
@@ -82,6 +84,7 @@
                 size="2"
                 min="0"
                 max="99"
+                data-testid="input-seniors"
                 @change="onUpdate"
               />
             </div>
@@ -104,7 +107,11 @@
     </div>
     <hr />
     <div>
-      <div v-if="totalTicketPrices.total" class="tag is-success is-large">
+      <div
+        v-if="totalTicketPrices.total"
+        data-testid="ticket-total"
+        class="tag is-success is-large"
+      >
         Your total: ${{ totalTicketPrices.total }}
       </div>
     </div>

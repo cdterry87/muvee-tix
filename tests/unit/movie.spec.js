@@ -5,6 +5,7 @@ import Card from '@/components/Card/Card'
 import MovieDateTimeSelection from '@/components/MovieDateTimeSelection/MovieDateTimeSelection'
 import MovieTicketSelection from '@/components/MovieTicketSelection/MovieTicketSelection'
 
+import cart from '@/store/cart'
 import movies from '@/mocks/movies'
 
 const localVue = createLocalVue()
@@ -12,51 +13,7 @@ localVue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    cart: {
-      namespaced: true,
-      state: {
-        cart: {
-          movie: {},
-          date: '',
-          time: '',
-          tickets: {
-            adults: 0,
-            kids: 0,
-            seniors: 0
-          },
-          seats: [],
-          snacks: {},
-          payment: {
-            type: '',
-            card: '',
-            expiration: '',
-            cvv: ''
-          },
-          taxes: ''
-        },
-        prices: {
-          adults: 14,
-          kids: 10,
-          seniors: 12
-        }
-      },
-      getters: {
-        totalTicketPrices: () => {
-          return {
-            adults: 0,
-            kids: 0,
-            seniors: 0,
-            total: 0
-          }
-        }
-      },
-      actions: {
-        setCartMovie: jest.fn(),
-        setCartDate: jest.fn(),
-        setCartTime: jest.fn(),
-        resetCartState: jest.fn()
-      }
-    },
+    cart,
     movies: {
       namespaced: true,
       state: {
@@ -71,8 +28,10 @@ const store = new Vuex.Store({
 })
 
 describe('Movie', () => {
-  it('renders movie details correctly', () => {
-    const wrapper = mount(Movie, {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = mount(Movie, {
       localVue,
       store,
       stubs: {
@@ -82,9 +41,25 @@ describe('Movie', () => {
         id: 464052
       }
     })
+  })
 
+  it('renders movie details correctly', () => {
+    expect(wrapper.find('.title').exists()).toBeTruthy()
     expect(wrapper.findComponent(Card).exists()).toBeTruthy()
     expect(wrapper.findComponent(MovieDateTimeSelection).exists()).toBeTruthy()
     expect(wrapper.findComponent(MovieTicketSelection).exists()).toBeTruthy()
+  })
+
+  xit('shows the total when tickets are selected', async () => {
+    wrapper.find('[data-testid="input-adults"]').setValue(2)
+    wrapper.find('[data-testid="input-kids"]').setValue(1)
+    wrapper.find('[data-testid="input-seniors"]').setValue(0)
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('[data-testid="ticket-total"]').exists()).toBeTruthy()
+  })
+
+  xit('enables the next button when required fields are filled out', async () => {
+    // await wrapper.vm.$nextTick()
   })
 })
