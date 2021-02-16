@@ -48,18 +48,16 @@ describe('Movie', () => {
     expect(wrapper.findComponent(Card).exists()).toBeTruthy()
     expect(wrapper.findComponent(MovieDateTimeSelection).exists()).toBeTruthy()
     expect(wrapper.findComponent(MovieTicketSelection).exists()).toBeTruthy()
+
+    const nextButton = wrapper.find('button')
+    expect(nextButton.exists()).toBeTruthy()
+    expect(nextButton.element.disabled === true).toBeTruthy()
   })
 
-  xit('shows the total when tickets are selected', async () => {
-    wrapper.find('[data-testid="input-adults"]').setValue(2)
-    wrapper.find('[data-testid="input-kids"]').setValue(1)
-    wrapper.find('[data-testid="input-seniors"]').setValue(0)
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.find('[data-testid="ticket-total"]').exists()).toBeTruthy()
-  })
-
-  xit('enables the next button when required fields are filled out', async () => {
-    // await wrapper.vm.$nextTick()
+  xit('enables Next button when required fields are filled out', () => {
+    // date
+    // time
+    // ticket selection
+    expect(wrapper.find('button').element.disabled === true).toBeFalsy()
   })
 })

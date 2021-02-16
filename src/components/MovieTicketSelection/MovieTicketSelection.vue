@@ -27,6 +27,7 @@
             </div>
             <div class="control ticket-price">
               <span
+                data-testid="adults-total"
                 class="tag is-medium is-light"
                 :class="{ 'is-success': adults > 0 }"
               >
@@ -61,6 +62,7 @@
             </div>
             <div class="control ticket-price">
               <span
+                data-testid="kids-total"
                 class="tag is-medium is-light"
                 :class="{ 'is-success': kids > 0 }"
               >
@@ -95,6 +97,7 @@
             </div>
             <div class="control ticket-price">
               <span
+                data-testid="seniors-total"
                 class="tag is-medium is-light"
                 :class="{ 'is-success': seniors > 0 }"
               >
@@ -138,6 +141,44 @@ export default {
   mounted() {
     this.setFieldsFromState()
   },
+  watch: {
+    adults: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const { tickets } = this.cart
+          tickets.adults = newValue
+          this.setCartTickets({
+            ...tickets
+          })
+        }
+      }
+    },
+    kids: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const { tickets } = this.cart
+          tickets.kids = newValue
+          this.setCartTickets({
+            ...tickets
+          })
+        }
+      }
+    },
+    seniors: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const { tickets } = this.cart
+          tickets.seniors = newValue
+          this.setCartTickets({
+            ...tickets
+          })
+        }
+      }
+    }
+  },
   methods: {
     ...mapActions(['setCartTickets']),
     onUpdate() {
@@ -149,9 +190,9 @@ export default {
     },
     setFieldsFromState() {
       const { adults, kids, seniors } = this.cart.tickets
-      this.adults = adults
-      this.kids = kids
-      this.seniors = seniors
+      this.adults = Number(adults)
+      this.kids = Number(kids)
+      this.seniors = Number(seniors)
     }
   }
 }

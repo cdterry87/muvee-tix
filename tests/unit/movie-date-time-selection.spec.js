@@ -12,7 +12,7 @@ const store = new Vuex.Store({
   }
 })
 
-describe('Card', () => {
+describe('MovieDateTimeSelection', () => {
   let wrapper
 
   beforeEach(() => {

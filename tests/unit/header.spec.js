@@ -3,7 +3,7 @@ import Header from '@/components/Header/Header'
 
 const localVue = createLocalVue()
 
-describe('Footer', () => {
+describe('Header', () => {
   let wrapper
 
   beforeEach(() => {
