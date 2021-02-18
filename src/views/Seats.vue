@@ -18,13 +18,16 @@
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">
           <router-link :to="`/movie/${movie.id}`">
-            <button class="button is-info">Previous</button>
+            <button class="button is-info" data-testid="prev-button">
+              Previous
+            </button>
           </router-link>
         </div>
         <div class="control">
           <router-link to="/snacks">
             <button
               class="button is-info"
+              data-testid="next-button"
               :disabled="totalSeats !== totalSeatsSelected"
             >
               Next
