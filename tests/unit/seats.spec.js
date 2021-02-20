@@ -7,13 +7,9 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('Seats', () => {
-  let stubs
-
-  beforeEach(() => {
-    stubs = {
-      RouterLink: RouterLinkStub
-    }
-  })
+  let stubs = {
+    RouterLink: RouterLinkStub
+  }
 
   it('renders correctly when no seats are selected and Next button is disabled', () => {
     const getters = {

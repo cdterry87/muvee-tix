@@ -5,42 +5,46 @@ import Vuex from 'vuex'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-const getters = {
-  movie: () => '',
-  totalSeats: () => 4,
-  totalSeatsSelected: () => 0
-}
-
-const store = new Vuex.Store({
-  modules: {
-    cart: {
-      namespaced: true,
-      state: {
-        cart: {}
-      },
-      getters,
-      actions: {
-        setCartSeats: () => ''
+function createWrapper(getters) {
+  const store = new Vuex.Store({
+    modules: {
+      cart: {
+        namespaced: true,
+        state: {
+          cart: {}
+        },
+        getters,
+        actions: {
+          setCartSeats: () => ''
+        }
       }
     }
-  }
-})
+  })
+
+  return mount(SeatSelection, {
+    localVue,
+    store,
+    propsData: {
+      rows: 5,
+      columns: 4
+    }
+  })
+}
 
 describe('SeatSelection', () => {
-  let wrapper
+  let getters
 
   beforeEach(() => {
-    wrapper = mount(SeatSelection, {
-      localVue,
-      store,
-      propsData: {
-        rows: 6,
-        columns: 10
-      }
-    })
+    getters = {
+      movie: () => '',
+      totalSeats: () => 2,
+      totalSeatsSelected: () => 0
+    }
   })
 
   it('renders correctly', () => {
+    const wrapper = createWrapper(getters)
+
     const numberOfSeats = wrapper.props('rows') * wrapper.props('columns')
 
     expect(wrapper.find('.seats-grid').exists()).toBeTruthy()
@@ -48,11 +52,41 @@ describe('SeatSelection', () => {
     expect(wrapper.findAll('.seat')).toHaveLength(numberOfSeats)
   })
 
-  it('selects a seat and changes cell background color', async () => {
+  it('selects less than the correct number of seats and changes cell background color to blue', async () => {
+    const wrapper = createWrapper(getters)
+
     const seat = wrapper.findAll('.seat__label').at(1)
     await seat.trigger('click')
 
     const selectedSeat = wrapper.findAll('.seat').at(1)
     expect(selectedSeat.classes('has-background-link-light')).toBe(true)
+  })
+
+  it('selects the correct number of seats and changes cell background color to green', async () => {
+    const wrapper = createWrapper({
+      movie: () => '',
+      totalSeats: () => 2,
+      totalSeatsSelected: () => 2
+    })
+
+    const seat = wrapper.findAll('.seat__label').at(1)
+    await seat.trigger('click')
+
+    const selectedSeat = wrapper.findAll('.seat').at(1)
+    expect(selectedSeat.classes('has-background-success-light')).toBe(true)
+  })
+
+  it('selects more than the correct number of seats and changes cell background color to red', async () => {
+    const wrapper = createWrapper({
+      movie: () => '',
+      totalSeats: () => 2,
+      totalSeatsSelected: () => 3
+    })
+
+    const seat = wrapper.findAll('.seat__label').at(1)
+    await seat.trigger('click')
+
+    const selectedSeat = wrapper.findAll('.seat').at(1)
+    expect(selectedSeat.classes('has-background-danger-light')).toBe(true)
   })
 })
