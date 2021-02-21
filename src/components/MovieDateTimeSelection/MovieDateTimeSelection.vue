@@ -4,7 +4,12 @@
     <div class="field">
       <div class="control">
         <div class="select">
-          <select name="date" v-model="date" @change="onUpdate">
+          <select
+            name="date"
+            data-testid="date"
+            v-model="date"
+            @change="onUpdate"
+          >
             <option value="">-- Select a date --</option>
             <option
               v-for="(date, index) in dates"
@@ -20,7 +25,12 @@
     <div class="field">
       <div class="control">
         <div class="select">
-          <select name="time" v-model="time" @change="onUpdate">
+          <select
+            name="time"
+            data-testid="time"
+            v-model="time"
+            @change="onUpdate"
+          >
             <option value="">-- Select a time --</option>
             <option
               v-for="(time, index) in times"
