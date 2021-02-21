@@ -31,8 +31,4 @@ describe('Home', () => {
     const { movies } = wrapper.vm.$store.state.movies
     expect(wrapper.findAllComponents(Card)).toHaveLength(movies.length)
   })
-
-  xit('redirects to movie page when card is clicked', () => {
-    //
-  })
 })
