@@ -23,7 +23,11 @@
         <div class="field is-grouped is-grouped-centered mt-4">
           <div class="control">
             <router-link to="/seats">
-              <button class="button is-info" :disabled="!canProceed">
+              <button
+                class="button is-info"
+                data-testid="next-button"
+                :disabled="!canProceed"
+              >
                 Next
               </button>
             </router-link>
@@ -65,8 +69,9 @@ export default {
   created() {
     this.movie = { ...this.getMovie(this.id) }
 
-    if (JSON.stringify(this.cart.movie) !== JSON.stringify(this.movie))
+    if (JSON.stringify(this.cart.movie) !== JSON.stringify(this.movie)) {
       this.resetCartState()
+    }
 
     this.setCartMovie(this.movie)
   },
