@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div>
     <h2 class="title is-size-4 has-text-centered">Choose your snacks</h2>
     <p class="has-text-centered mb-5">
       Order now and you can pick up your snacks at the snack counter without
@@ -7,7 +7,7 @@
     </p>
     <hr />
     <div v-for="(category, index) in snacks" :key="index">
-      <h1 class="title is-4">{{ category.title }}</h1>
+      <h3 class="subtitle has-text-weight-bold is-4">{{ category.title }}</h3>
       <SnackListItem
         v-for="(item, itemIndex) in category.items"
         :key="itemIndex"
@@ -17,7 +17,7 @@
       <hr />
     </div>
     <div v-if="totalSnackPrices" class="has-text-centered">
-      <div class="tag is-success is-large">
+      <div data-testid="snack-list-total" class="tag is-success is-large">
         Your total: ${{ totalSnackPrices }}
       </div>
     </div>

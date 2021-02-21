@@ -24,11 +24,13 @@
           :id="name"
           :name="name"
           v-model="quantity"
+          data-testid="snack-item-input"
           @change="onChange"
         />
       </div>
       <div class="level-item">
         <span
+          data-testid="snack-list-item-total"
           class="tag is-medium is-light"
           :class="{ 'is-success': quantity > 0 }"
         >
@@ -71,6 +73,7 @@ export default {
   computed: {
     ...mapGetters(['snacks']),
     quantityProxy() {
+      if (!this.snacks) return
       return this.snacks[this.name]?.quantity || 0
     },
     total() {
