@@ -50,6 +50,11 @@ const getters = {
   tickets: state => state.cart.tickets,
   seats: state => state.cart.seats,
   snacks: state => state.cart.snacks,
+  totalSnacks: state => {
+    return Object.values(state.cart.snacks).reduce((prev, curr) => {
+      return prev + Number(curr.quantity)
+    }, 0)
+  },
   payment: state => state.cart.payment,
   totalPrices: state => {
     const adultsTotal = state.cart.tickets.adults * state.prices.adults
