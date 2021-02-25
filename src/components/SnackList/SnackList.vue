@@ -16,9 +16,9 @@
       />
       <hr />
     </div>
-    <div v-if="totalSnackPrices" class="has-text-centered">
+    <div v-if="totalPrices.snacks" class="has-text-centered">
       <div data-testid="snack-list-total" class="tag is-success is-large">
-        Your total: ${{ totalSnackPrices }}
+        Your total: ${{ totalPrices.snacks }}
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalSnackPrices'])
+    ...mapGetters(['totalPrices'])
   },
   mounted() {
     this.setSnacksFromState()

@@ -51,16 +51,22 @@ const getters = {
   seats: state => state.cart.seats,
   snacks: state => state.cart.snacks,
   payment: state => state.cart.payment,
-  totalTicketPrices: state => {
-    const adultTotalPrice = state.cart.tickets.adults * state.prices.adults
-    const kidTotalPrice = state.cart.tickets.kids * state.prices.kids
-    const seniorTotalPrice = state.cart.tickets.seniors * state.prices.seniors
+  totalPrices: state => {
+    const adultsTotal = state.cart.tickets.adults * state.prices.adults
+    const kidsTotal = state.cart.tickets.kids * state.prices.kids
+    const seniorsTotal = state.cart.tickets.seniors * state.prices.seniors
+
+    let snacksTotal = 0
+    Object.values(state.cart.snacks).forEach(snack => {
+      snacksTotal = snacksTotal + snack.price * snack.quantity
+    })
 
     return {
-      adults: adultTotalPrice,
-      kids: kidTotalPrice,
-      seniors: seniorTotalPrice,
-      total: adultTotalPrice + kidTotalPrice + seniorTotalPrice
+      adults: adultsTotal,
+      kids: kidsTotal,
+      seniors: seniorsTotal,
+      snacks: snacksTotal,
+      total: adultsTotal + kidsTotal + seniorsTotal + snacksTotal
     }
   },
   totalSeats: state => {
@@ -70,21 +76,12 @@ const getters = {
   totalSeatsSelected: state => {
     return state.cart.seats.length
   },
-  totalSnackPrices: state => {
-    let total = 0
-    Object.values(state.cart.snacks).forEach(snack => {
-      total = total + snack.price * snack.quantity
-    })
-    return total
-  },
   calculatedTaxAmounts: (state, getters) => {
     return {
-      calculatedTax: (
-        state.cart.taxes * getters.totalTicketPrices.total
-      ).toFixed(2),
+      calculatedTax: (state.cart.taxes * getters.totalPrices.total).toFixed(2),
       totalWithTax: (
-        state.cart.taxes * getters.totalTicketPrices.total +
-        getters.totalTicketPrices.total
+        state.cart.taxes * getters.totalPrices.total +
+        getters.totalPrices.total
       ).toFixed(2)
     }
   }

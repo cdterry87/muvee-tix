@@ -5,25 +5,25 @@
       {{ cart.movie.title }}
     </h4>
     <Card v-bind="getMovieDetails(cart.movie)" :has-title="false" />
-    <table class="mt-4 table is-narrow is-fullwidth">
-      <tr>
-        <th colspan="2">Tickets</th>
-        <th>Total</th>
-      </tr>
+    <table class="mt-4 table is-narrow is-fullwidth is-size-7">
       <tr v-if="cart.tickets.adults">
         <td>Adults</td>
         <td>{{ cart.tickets.adults }}</td>
-        <td>${{ totalTicketPrices.adults }}</td>
+        <td>${{ totalPrices.adults }}</td>
       </tr>
       <tr v-if="cart.tickets.kids">
         <td>Kids</td>
         <td>{{ cart.tickets.kids }}</td>
-        <td>${{ totalTicketPrices.kids }}</td>
+        <td>${{ totalPrices.kids }}</td>
       </tr>
       <tr v-if="cart.tickets.seniors">
         <td>Seniors</td>
         <td>{{ cart.tickets.seniors }}</td>
-        <td>${{ totalTicketPrices.seniors }}</td>
+        <td>${{ totalPrices.seniors }}</td>
+      </tr>
+      <tr v-if="cart.snacks">
+        <td colspan="2">Snacks</td>
+        <td>${{ totalPrices.snacks }}</td>
       </tr>
       <tr v-if="calculatedTaxAmounts.calculatedTax">
         <td colspan="2">Taxes:</td>
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalTicketPrices', 'calculatedTaxAmounts'])
+    ...mapGetters(['totalPrices', 'calculatedTaxAmounts'])
   },
   created() {
     this.getTaxes()
