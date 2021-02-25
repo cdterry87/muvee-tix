@@ -3,16 +3,20 @@
     <div class="level-left">
       <div class="level-item">
         <figure class="image is-64x64">
-          <img :src="getImage(image)" :alt="title" />
+          <img data-testid="image" :src="getImage(image)" :alt="title" />
         </figure>
       </div>
       <div class="level-item">
-        <label class="label" :for="name">{{ title }}</label>
+        <label data-testid="title" class="label" :for="name">
+          {{ title }}
+        </label>
       </div>
     </div>
     <div class="level-right">
       <div class="level-item">
-        <label :for="name" class="label">${{ price }} x</label>
+        <label data-testid="price" class="label" :for="name">
+          ${{ price }} x
+        </label>
       </div>
       <div class="level-item">
         <input
@@ -21,16 +25,16 @@
           size="2"
           min="0"
           max="99"
-          :id="name"
-          :name="name"
+          :id="quantity"
+          :name="quantity"
           v-model="quantity"
-          data-testid="snack-item-input"
+          data-testid="quantity"
           @change="onChange"
         />
       </div>
       <div class="level-item">
         <span
-          data-testid="snack-list-item-total"
+          data-testid="total"
           class="tag is-medium is-light"
           :class="{ 'is-success': quantity > 0 }"
         >

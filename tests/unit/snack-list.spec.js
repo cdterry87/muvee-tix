@@ -39,12 +39,12 @@ describe('SnackList', () => {
   })
 
   it('shows the total when an item quantity is greater than one', async () => {
-    const input = wrapper.findAll('[data-testid="snack-item-input"]').at(1)
+    const input = wrapper.findAll('[data-testid="input"]').at(1)
     input.setValue(2)
     await input.trigger('change')
     await wrapper.vm.$nextTick()
 
-    const total = wrapper.find('[data-testid="snack-list-total"]')
+    const total = wrapper.find('[data-testid="total"]')
     expect(total.exists()).toBeTruthy()
   })
 })
