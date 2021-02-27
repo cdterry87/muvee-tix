@@ -62,6 +62,4 @@ describe('SnackList', () => {
     expect(totalElement.exists()).toBeTruthy()
     expect(totalElement.text()).toContain(total)
   })
-
-
 })
