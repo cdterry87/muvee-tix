@@ -13,7 +13,12 @@
                 v-for="(card, index) in cards"
                 :key="`type${index}`"
               >
-                <input type="radio" :value="card.value" v-model="type" />
+                <input
+                  type="radio"
+                  :value="card.value"
+                  v-model="type"
+                  @change="onChange"
+                />
                 {{ card.label }}
               </label>
             </div>
@@ -32,9 +37,9 @@
                     class="control"
                     :class="{ 'has-icons-left': column.icon }"
                   >
-                    <component
-                      :is="column.component"
+                    <input
                       v-bind="column.attributes"
+                      v-model="card[column.attributes.name]"
                     />
                     <span v-if="column.icon" class="icon is-small is-left">
                       <i :class="column.icon"></i>
@@ -72,7 +77,12 @@ export default {
   data() {
     return {
       type: 'visa',
-      cards
+      cards,
+      card: {
+        number: '',
+        expiration: '',
+        cvv: ''
+      }
     }
   },
   computed: {
@@ -82,7 +92,21 @@ export default {
   },
   methods: {
     onSubmit() {
-      //
+      const card = {
+        ...this.card,
+        type: this.type
+      }
+      this.$emit('paymentSubmit', card)
+    },
+    onChange() {
+      this.resetData()
+    },
+    resetData() {
+      this.card = {
+        number: '',
+        expiration: '',
+        cvv: ''
+      }
     }
   }
 }

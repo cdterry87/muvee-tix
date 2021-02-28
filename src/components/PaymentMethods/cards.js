@@ -4,13 +4,11 @@ const visa = {
   fields: {
     columns: [
       {
-        component: 'input',
         label: 'Card Number',
         icon: 'fas fa-credit-card',
         class: 'is-full',
         attributes: {
           name: 'number',
-          model: 'number',
           type: 'text',
           placeholder: '4000 0000 0000 0000',
           maxlength: '19',
@@ -20,12 +18,10 @@ const visa = {
         }
       },
       {
-        component: 'input',
         label: 'Expiration Date',
         class: 'is-half',
         attributes: {
           name: 'expiration',
-          model: 'expiration',
           type: 'text',
           placeholder: 'MM/YY',
           maxlength: '5',
@@ -35,12 +31,10 @@ const visa = {
         }
       },
       {
-        component: 'input',
         label: 'CVV',
         class: 'is-half',
         attributes: {
           name: 'cvv',
-          model: 'cvv',
           type: 'text',
           placeholder: '000',
           maxlength: '3',
@@ -59,13 +53,11 @@ const mastercard = {
   fields: {
     columns: [
       {
-        component: 'input',
         label: 'Card Number',
         icon: 'fas fa-credit-card',
         class: 'is-full',
         attributes: {
           name: 'number',
-          model: 'number',
           type: 'text',
           placeholder: '3000 0000 0000 0000',
           maxlength: '19',
@@ -75,12 +67,10 @@ const mastercard = {
         }
       },
       {
-        component: 'input',
         label: 'Expiration Date',
         class: 'is-half',
         attributes: {
           name: 'expiration',
-          model: 'expiration',
           type: 'text',
           placeholder: 'MM/YY',
           maxlength: '5',
@@ -90,12 +80,10 @@ const mastercard = {
         }
       },
       {
-        component: 'input',
         label: 'CVV',
         class: 'is-half',
         attributes: {
           name: 'cvv',
-          model: 'cvv',
           type: 'text',
           placeholder: '000',
           maxlength: '3',
@@ -114,15 +102,13 @@ const americanexpress = {
   fields: {
     columns: [
       {
-        component: 'input',
         label: 'Card Number',
         icon: 'fas fa-credit-card',
         class: 'is-full',
         attributes: {
           name: 'number',
-          model: 'number',
           type: 'text',
-          placeholder: '0000 000000 00000',
+          placeholder: '3700 000000 00000',
           maxlength: '17',
           pattern: '^(?:34|37)\\d{13}$',
           class: 'input',
@@ -130,12 +116,10 @@ const americanexpress = {
         }
       },
       {
-        component: 'input',
         label: 'Expiration Date',
         class: 'is-half',
         attributes: {
           name: 'expiration',
-          model: 'expiration',
           type: 'text',
           placeholder: 'MM/YY',
           maxlength: '5',
@@ -145,12 +129,10 @@ const americanexpress = {
         }
       },
       {
-        component: 'input',
         label: 'CVV',
         class: 'is-half',
         attributes: {
           name: 'cvv',
-          model: 'cvv',
           type: 'text',
           placeholder: '0000',
           maxlength: '4',
@@ -169,13 +151,11 @@ const discover = {
   fields: {
     columns: [
       {
-        component: 'input',
         label: 'Card Number',
         icon: 'fas fa-credit-card',
         class: 'is-full',
         attributes: {
           name: 'number',
-          model: 'number',
           type: 'text',
           placeholder: '6000 0000 0000 0000',
           maxlength: '17',
@@ -185,12 +165,10 @@ const discover = {
         }
       },
       {
-        component: 'input',
         label: 'Expiration Date',
         class: 'is-half',
         attributes: {
           name: 'expiration',
-          model: 'expiration',
           type: 'text',
           placeholder: 'MM/YY',
           maxlength: '5',
@@ -200,12 +178,10 @@ const discover = {
         }
       },
       {
-        component: 'input',
         label: 'CVV',
         class: 'is-half',
         attributes: {
           name: 'cvv',
-          model: 'cvv',
           type: 'text',
           placeholder: '000',
           maxlength: '3',

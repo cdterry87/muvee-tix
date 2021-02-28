@@ -7,43 +7,43 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
     path: '/movie/:id',
-    name: 'Movie',
+    name: 'movie',
     props: true,
     component: () =>
       import(/* webpackChunkName: "movie" */ '../views/Movie.vue')
   },
   {
     path: '/seats',
-    name: 'Seats',
+    name: 'seats',
     component: () =>
       import(/* webpackChunkName: "seats" */ '../views/Seats.vue')
   },
   {
     path: '/snacks',
-    name: 'Snacks',
+    name: 'snacks',
     component: () =>
       import(/* webpackChunkName: "seats" */ '../views/Snacks.vue')
   },
   {
     path: '/payment',
-    name: 'Payment',
+    name: 'payment',
     component: () =>
       import(/* webpackChunkName: "payment" */ '../views/Payment.vue')
   },
   {
     path: '/summary',
-    name: 'Summary',
+    name: 'summary',
     component: () =>
       import(/* webpackChunkName: "summary" */ '../views/Summary.vue')
   },
   {
     path: '*',
-    name: 'NotFound',
+    name: 'notfound',
     component: () =>
       import(/* webpackChunkName: "notfound" */ '../views/NotFound.vue')
   }

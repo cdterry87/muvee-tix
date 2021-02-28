@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-two-thirds">
-        <PaymentMethods />
+        <PaymentMethods @paymentSubmit="onSubmit" />
       </div>
       <div class="column is-one-third">
         <PaymentSummary />
@@ -24,7 +24,19 @@ export default {
     PaymentSummary
   },
   methods: {
-    ...mapActions([''])
+    ...mapActions(['setCartPayment']),
+    onSubmit(card) {
+      const { type, number, expiration, cvv } = card
+
+      this.setCartPayment({
+        type,
+        number,
+        expiration,
+        cvv
+      })
+
+      this.$router.push('summary')
+    }
   }
 }
 </script>

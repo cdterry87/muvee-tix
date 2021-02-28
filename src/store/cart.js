@@ -30,7 +30,7 @@ const getDefaultState = () => {
       snacks: {},
       payment: {
         type: '',
-        card: '',
+        number: '',
         expiration: '',
         cvv: ''
       },
@@ -92,6 +92,9 @@ const getters = {
         getters.totalPrices.total
       ).toFixed(2)
     }
+  },
+  paymentLastFourDigits: state => {
+    return state.cart.payment.number.substr(-4)
   }
 }
 
@@ -118,6 +121,7 @@ const actions = {
     commit(SET_CART_SNACKS, snacks)
   },
   setCartPayment({ commit }, payment) {
+    console.log('setcartpayment', payment)
     commit(SET_CART_PAYMENT, payment)
   },
   getTaxes({ commit }) {
