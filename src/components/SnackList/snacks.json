@@ -3,25 +3,25 @@
     "title": "Drinks",
     "items": [
       {
-        "title": "Water",
+        "label": "Water",
         "name": "water",
         "image": "water.png",
         "price": "2"
       },
       {
-        "title": "Soda",
+        "label": "Soda",
         "name": "soda",
         "image": "soda.png",
         "price": "3.25"
       },
       {
-        "title": "Fruit Juice",
+        "label": "Fruit Juice",
         "name": "juice",
         "image": "juice.png",
         "price": "3"
       },
       {
-        "title": "Beer",
+        "label": "Beer",
         "name": "beer",
         "image": "beer.png",
         "price": "4.5"
@@ -32,25 +32,25 @@
     "title": "Food",
     "items": [
       {
-        "title": "Popcorn",
+        "label": "Popcorn",
         "name": "popcorn",
         "image": "popcorn.png",
         "price": "2"
       },
       {
-        "title": "Pretzel",
+        "label": "Pretzel",
         "name": "pretzel",
         "image": "pretzel.png",
         "price": "2.5"
       },
       {
-        "title": "Nachos",
+        "label": "Nachos",
         "name": "nachos",
         "image": "nachos.png",
         "price": "3.75"
       },
       {
-        "title": "Hot Dog",
+        "label": "Hot Dog",
         "name": "hotdog",
         "image": "hotdog.png",
         "price": "3.25"
@@ -61,25 +61,25 @@
     "title": "Candy",
     "items": [
       {
-        "title": "M&M's",
+        "label": "M&M's",
         "name": "mms",
         "image": "mms.png",
         "price": "2.25"
       },
       {
-        "title": "Sour Patch Kids",
+        "label": "Sour Patch Kids",
         "name": "sourpatch",
         "image": "sourpatch.png",
         "price": "2.5"
       },
       {
-        "title": "Reese's Pieces",
+        "label": "Reese's Pieces",
         "name": "reeses",
         "image": "reeses.png",
         "price": "2.75"
       },
       {
-        "title": "Gummy Worms",
+        "label": "Gummy Worms",
         "name": "gummyworms",
         "image": "gummyworms.png",
         "price": "3"

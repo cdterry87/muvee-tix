@@ -53,6 +53,7 @@ export default {
     ...mapActions(['setCartSnacks']),
     onSnackListItemChange(item) {
       this.addedSnacks[item.name] = {
+        label: item.label,
         quantity: item.quantity,
         price: item.price
       }

@@ -3,12 +3,12 @@
     <div class="level-left">
       <div class="level-item">
         <figure class="image is-64x64">
-          <img data-testid="image" :src="getImage(image)" :alt="title" />
+          <img data-testid="image" :src="getImage(image)" :alt="label" />
         </figure>
       </div>
       <div class="level-item">
         <label data-testid="title" class="label" :for="name">
-          {{ title }}
+          {{ label }}
         </label>
       </div>
     </div>
@@ -52,7 +52,7 @@ const { mapGetters } = createNamespacedHelpers('cart')
 export default {
   name: 'SnackListItem',
   props: {
-    title: {
+    label: {
       type: String,
       required: true
     },
@@ -99,6 +99,7 @@ export default {
     onChange() {
       this.$emit('onSnackListItemChange', {
         name: this.name,
+        label: this.label,
         quantity: this.quantity,
         price: this.price
       })
