@@ -7,7 +7,7 @@
         </figure>
       </div>
       <div class="level-item">
-        <label data-testid="title" class="label" :for="name">
+        <label data-testid="label" class="label" :for="name">
           {{ label }}
         </label>
       </div>

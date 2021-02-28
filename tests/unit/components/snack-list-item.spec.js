@@ -14,7 +14,7 @@ const store = new Vuex.Store({
 })
 
 const propsData = {
-  title: 'Water',
+  label: 'Water',
   name: 'water',
   image: 'water.png',
   price: '5'
@@ -39,15 +39,15 @@ describe('SnackList', () => {
     const quantity = 2
 
     const imageElement = wrapper.find('[data-testid="image"]')
-    const titleElement = wrapper.find('[data-testid="title"]')
+    const labelElement = wrapper.find('[data-testid="label"]')
     const priceElement = wrapper.find('[data-testid="price"]')
     const quantityElement = wrapper.find('[data-testid="quantity"]')
     const totalElement = wrapper.find('[data-testid="total"]')
 
     expect(imageElement.exists()).toBeTruthy()
 
-    expect(titleElement.exists()).toBeTruthy()
-    expect(titleElement.text()).toContain(propsData.title)
+    expect(labelElement.exists()).toBeTruthy()
+    expect(labelElement.text()).toContain(propsData.label)
 
     expect(priceElement.exists()).toBeTruthy()
     expect(priceElement.text()).toContain(propsData.price)
