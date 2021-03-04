@@ -2,8 +2,8 @@ import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import PaymentSummary from '@/components/PaymentSummary/PaymentSummary'
 import Card from '@/components/Card/Card'
-
 import cart from '@/store/cart'
+import '@/filters/currency'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -72,10 +72,12 @@ describe('PaymentSummary', () => {
   it('renders totals for snacks', () => {
     cartStore.state.cart.snacks = {
       test1: {
+        label: 'Snack One',
         quantity: 1,
         price: 2
       },
       test2: {
+        label: 'Snack Two',
         quantity: 2,
         price: 3
       }

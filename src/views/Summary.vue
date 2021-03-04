@@ -1,25 +1,31 @@
 <template>
   <div class="container">
     <div class="box">
-      <h1 class="title has-text-centered">Thank you for your purchase!</h1>
-      <h2 class="subtitle has-text-centered">We hope you enjoy your movie!</h2>
-      <h3 class="has-text-weight-bold has-text-centered is-size-4">
-        Order Summary
-      </h3>
+      <h1 data-testid="thank-you" class="title has-text-centered">
+        Thank you for your purchase!
+      </h1>
+      <h2 data-testid="thank-you-message" class="subtitle has-text-centered">
+        We hope you enjoy your movie!
+      </h2>
       <hr />
       <div class="order-summary">
-        <h4 class="has-text-weight-bold is-size-5 has-text-centered">
-          {{ cart.movie.title }}
-        </h4>
-        <p class="my-3 has-text-centered">{{ cart.movie.overview }}</p>
         <div class="columns">
           <div class="column is-one-third">
             <Card v-bind="getMovieDetails(cart.movie)" :has-title="false" />
           </div>
           <div class="column is-two-thirds">
-            <table class="mt-4 table is-fullwidth is-size-6">
+            <h3
+              data-testid="movie-title"
+              class="has-text-weight-bold is-size-5 has-text-centered"
+            >
+              {{ cart.movie.title }}
+            </h3>
+            <table
+              data-testid="order-summary"
+              class="mt-4 table is-fullwidth is-size-6"
+            >
               <tr>
-                <th></th>
+                <th>Order Summary</th>
                 <th>Quantity</th>
                 <th>Total</th>
               </tr>
@@ -27,36 +33,42 @@
                 <td>Adult Tickets</td>
                 <td>{{ cart.tickets.adults }}</td>
                 <td data-testid="total-price-adults">
-                  ${{ totalPrices.adults }}
+                  {{ totalPrices.adults | currency }}
                 </td>
               </tr>
               <tr v-if="cart.tickets.kids">
                 <td>Kid Tickets</td>
                 <td>{{ cart.tickets.kids }}</td>
-                <td data-testid="total-price-kids">${{ totalPrices.kids }}</td>
+                <td data-testid="total-price-kids">
+                  {{ totalPrices.kids | currency }}
+                </td>
               </tr>
               <tr v-if="cart.tickets.seniors">
                 <td>Senior Tickets</td>
                 <td>{{ cart.tickets.seniors }}</td>
                 <td data-testid="total-price-seniors">
-                  ${{ totalPrices.seniors }}
+                  {{ totalPrices.seniors | currency }}
                 </td>
               </tr>
-              <tr v-for="(snack, index) in cart.snacks" :key="index">
+              <tr
+                data-testid="snack-item"
+                v-for="(snack, index) in cart.snacks"
+                :key="index"
+              >
                 <td>{{ snack.label }}</td>
                 <td>{{ snack.quantity }}</td>
-                <td>${{ snack.price }}</td>
+                <td>{{ snack.price | currency }}</td>
               </tr>
               <tr v-if="calculatedTaxAmounts.calculatedTax">
                 <td colspan="2">Taxes:</td>
                 <td data-testid="taxes">
-                  ${{ calculatedTaxAmounts.calculatedTax }}
+                  {{ calculatedTaxAmounts.calculatedTax | currency }}
                 </td>
               </tr>
               <tr class="has-text-weight-bold">
                 <td colspan="2">Your Total:</td>
                 <td data-testid="total">
-                  ${{ calculatedTaxAmounts.totalWithTax }}
+                  {{ calculatedTaxAmounts.totalWithTax | currency }}
                 </td>
               </tr>
             </table>
@@ -66,7 +78,7 @@
       <div class="field is-grouped is-grouped-centered mt-6">
         <div class="control">
           <button
-            data-testid="prev-button"
+            data-testid="home-button"
             class="button is-success"
             @click="onClick"
           >

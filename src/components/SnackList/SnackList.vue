@@ -18,7 +18,7 @@
     </div>
     <div v-if="totalPrices.snacks" class="has-text-centered">
       <div data-testid="snack-list-total" class="tag is-success is-large">
-        Your total: ${{ totalPrices.snacks }}
+        Your total: {{ totalPrices.snacks | currency }}
       </div>
     </div>
   </div>

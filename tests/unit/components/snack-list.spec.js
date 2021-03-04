@@ -2,8 +2,8 @@ import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import Vuex from 'vuex'
 import SnackList from '@/views/Snacks'
 import SnackListItem from '@/components/SnackListItem/SnackListItem'
-
 import cart from '@/store/cart'
+import '@/filters/currency'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)

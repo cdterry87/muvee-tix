@@ -2,6 +2,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import MovieTicketSelection from '@/components/MovieTicketSelection/MovieTicketSelection'
 import Vuex from 'vuex'
 import cart from '@/store/cart'
+import '@/filters/currency'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)

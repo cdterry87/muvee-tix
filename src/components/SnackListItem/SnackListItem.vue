@@ -15,7 +15,7 @@
     <div class="level-right">
       <div class="level-item">
         <label data-testid="price" class="label" :for="name">
-          ${{ price }} x
+          {{ price | currency }} x
         </label>
       </div>
       <div class="level-item">
@@ -38,7 +38,7 @@
           class="tag is-medium is-light"
           :class="{ 'is-success': quantity > 0 }"
         >
-          ${{ total }}
+          {{ total | currency }}
         </span>
       </div>
     </div>

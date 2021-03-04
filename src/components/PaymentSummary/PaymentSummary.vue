@@ -9,30 +9,42 @@
       <tr v-if="cart.tickets.adults">
         <td>Adults</td>
         <td>{{ cart.tickets.adults }}</td>
-        <td data-testid="total-price-adults">${{ totalPrices.adults }}</td>
+        <td data-testid="total-price-adults">
+          {{ totalPrices.adults | currency }}
+        </td>
       </tr>
       <tr v-if="cart.tickets.kids">
         <td>Kids</td>
         <td>{{ cart.tickets.kids }}</td>
-        <td data-testid="total-price-kids">${{ totalPrices.kids }}</td>
+        <td data-testid="total-price-kids">
+          {{ totalPrices.kids | currency }}
+        </td>
       </tr>
       <tr v-if="cart.tickets.seniors">
         <td>Seniors</td>
         <td>{{ cart.tickets.seniors }}</td>
-        <td data-testid="total-price-seniors">${{ totalPrices.seniors }}</td>
+        <td data-testid="total-price-seniors">
+          {{ totalPrices.seniors | currency }}
+        </td>
       </tr>
       <tr v-if="totalSnacks">
         <td>Snacks</td>
         <td>{{ totalSnacks }}</td>
-        <td data-testid="total-price-snacks">${{ totalPrices.snacks }}</td>
+        <td data-testid="total-price-snacks">
+          {{ totalPrices.snacks | currency }}
+        </td>
       </tr>
       <tr v-if="calculatedTaxAmounts.calculatedTax">
         <td colspan="2">Taxes:</td>
-        <td data-testid="taxes">${{ calculatedTaxAmounts.calculatedTax }}</td>
+        <td data-testid="taxes">
+          {{ calculatedTaxAmounts.calculatedTax | currency }}
+        </td>
       </tr>
       <tr class="has-text-weight-bold">
         <td colspan="2">Total:</td>
-        <td data-testid="total">${{ calculatedTaxAmounts.totalWithTax }}</td>
+        <td data-testid="total">
+          {{ calculatedTaxAmounts.totalWithTax | currency }}
+        </td>
       </tr>
     </table>
   </div>

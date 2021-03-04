@@ -22,7 +22,7 @@
             </div>
             <div class="control ml-2 ticket-price">
               <span class="tag is-info is-medium is-light">
-                ${{ prices.adults }}
+                {{ prices.adults | currency }}
               </span>
             </div>
             <div class="control ticket-price">
@@ -31,7 +31,7 @@
                 class="tag is-medium is-light"
                 :class="{ 'is-success': adults > 0 }"
               >
-                ${{ totalPrices.adults }}
+                {{ totalPrices.adults | currency }}
               </span>
             </div>
           </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="control ml-2 ticket-price">
               <span class="tag is-info is-medium is-light">
-                ${{ prices.kids }}
+                {{ prices.kids | currency }}
               </span>
             </div>
             <div class="control ticket-price">
@@ -66,7 +66,7 @@
                 class="tag is-medium is-light"
                 :class="{ 'is-success': kids > 0 }"
               >
-                ${{ totalPrices.kids }}
+                {{ totalPrices.kids | currency }}
               </span>
             </div>
           </div>
@@ -92,7 +92,7 @@
             </div>
             <div class="control ml-2 ticket-price">
               <span class="tag is-info is-medium is-light">
-                ${{ prices.seniors }}
+                {{ prices.seniors | currency }}
               </span>
             </div>
             <div class="control ticket-price">
@@ -101,7 +101,7 @@
                 class="tag is-medium is-light"
                 :class="{ 'is-success': seniors > 0 }"
               >
-                ${{ totalPrices.seniors }}
+                {{ totalPrices.seniors | currency }}
               </span>
             </div>
           </div>
@@ -115,7 +115,7 @@
         data-testid="ticket-total"
         class="tag is-success is-large"
       >
-        Your total: ${{ totalPrices.total }}
+        Your total: {{ totalPrices.total | currency }}
       </div>
     </div>
   </div>
