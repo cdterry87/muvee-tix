@@ -27,26 +27,26 @@
               <tr>
                 <th>Order Summary</th>
                 <th>Quantity</th>
-                <th>Total</th>
+                <th class="has-text-right">Total</th>
               </tr>
               <tr v-if="cart.tickets.adults">
                 <td>Adult Tickets</td>
                 <td>{{ cart.tickets.adults }}</td>
-                <td data-testid="total-price-adults">
+                <td data-testid="total-price-adults" class="has-text-right">
                   {{ totalPrices.adults | currency }}
                 </td>
               </tr>
               <tr v-if="cart.tickets.kids">
                 <td>Kid Tickets</td>
                 <td>{{ cart.tickets.kids }}</td>
-                <td data-testid="total-price-kids">
+                <td data-testid="total-price-kids" class="has-text-right">
                   {{ totalPrices.kids | currency }}
                 </td>
               </tr>
               <tr v-if="cart.tickets.seniors">
                 <td>Senior Tickets</td>
                 <td>{{ cart.tickets.seniors }}</td>
-                <td data-testid="total-price-seniors">
+                <td data-testid="total-price-seniors" class="has-text-right">
                   {{ totalPrices.seniors | currency }}
                 </td>
               </tr>
@@ -57,17 +57,19 @@
               >
                 <td>{{ snack.label }}</td>
                 <td>{{ snack.quantity }}</td>
-                <td>{{ snack.price | currency }}</td>
+                <td class="has-text-right">
+                  {{ snack.price | currency }}
+                </td>
               </tr>
               <tr v-if="calculatedTaxAmounts.calculatedTax">
                 <td colspan="2">Taxes:</td>
-                <td data-testid="taxes">
+                <td data-testid="taxes" class="has-text-right">
                   {{ calculatedTaxAmounts.calculatedTax | currency }}
                 </td>
               </tr>
               <tr class="has-text-weight-bold">
                 <td colspan="2">Your Total:</td>
-                <td data-testid="total">
+                <td data-testid="total" class="has-text-right">
                   {{ calculatedTaxAmounts.totalWithTax | currency }}
                 </td>
               </tr>
