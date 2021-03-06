@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <form @submit.prevent="onSubmit">
+    <form data-testid="form" @submit.prevent="onSubmit">
       <h2 class="title is-size-4 has-text-centered">
         Enter your payment information
       </h2>
@@ -16,6 +16,7 @@
                 <input
                   type="radio"
                   :value="card.value"
+                  :data-testid="card.value"
                   v-model="type"
                   @change="onChange"
                 />
@@ -40,6 +41,7 @@
                     <input
                       v-bind="column.attributes"
                       v-model="card[column.attributes.name]"
+                      :data-testid="`${type}.${column.attributes.name}`"
                     />
                     <span v-if="column.icon" class="icon is-small is-left">
                       <i :class="column.icon"></i>

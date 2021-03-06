@@ -121,7 +121,6 @@ const actions = {
     commit(SET_CART_SNACKS, snacks)
   },
   setCartPayment({ commit }, payment) {
-    console.log('setcartpayment', payment)
     commit(SET_CART_PAYMENT, payment)
   },
   getTaxes({ commit }) {
