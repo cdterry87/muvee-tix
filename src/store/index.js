@@ -4,13 +4,15 @@ import createPersistedState from 'vuex-persistedstate'
 
 import cart from './cart'
 import movies from './movies'
+import seats from './seats'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   modules: {
     cart,
-    movies
+    movies,
+    seats
   },
   plugins: [createPersistedState()]
 })

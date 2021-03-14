@@ -6,10 +6,9 @@ export default {
   state: {
     movies: []
   },
-  mutations: {
-    [GET_MOVIES](state, movies) {
-      state.movies = movies
-    }
+  getters: {
+    getMovie: state => id =>
+      state.movies.find(movie => movie.id === parseInt(id))
   },
   actions: {
     async getMovies({ commit }) {
@@ -17,8 +16,9 @@ export default {
       commit(GET_MOVIES, movies)
     }
   },
-  getters: {
-    getMovie: state => id =>
-      state.movies.find(movie => movie.id === parseInt(id))
+  mutations: {
+    [GET_MOVIES](state, movies) {
+      state.movies = movies
+    }
   }
 }

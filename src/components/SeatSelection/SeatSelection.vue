@@ -6,17 +6,7 @@
           v-for="(column, columnIndex) in columns"
           :key="columnIndex"
           class="seat"
-          :class="{
-            'has-background-success-light':
-              totalSeatsSelected === totalSeats &&
-              selectedSeats.includes(getSeatByRowAndColumn(row, column)),
-            'has-background-danger-light':
-              totalSeatsSelected > totalSeats &&
-              selectedSeats.includes(getSeatByRowAndColumn(row, column)),
-            'has-background-link-light':
-              totalSeatsSelected < totalSeats &&
-              selectedSeats.includes(getSeatByRowAndColumn(row, column))
-          }"
+          :class="getSeatClasses(row, column)"
         >
           <label class="seat__label" :for="getSeatByRowAndColumn(row, column)">
             <input
@@ -27,6 +17,9 @@
               :id="getSeatByRowAndColumn(row, column)"
               :ref="getSeatByRowAndColumn(row, column)"
               class="visually-hidden"
+              :disabled="
+                claimedSeats.includes(getSeatByRowAndColumn(row, column))
+              "
             />
             {{ getSeatByRowAndColumn(row, column) }}
           </label>
@@ -37,8 +30,8 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions, mapGetters } = createNamespacedHelpers('cart')
+import { createNamespacedHelpers, mapGetters } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'SeatSelection',
@@ -59,7 +52,8 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalSeats', 'totalSeatsSelected']),
+    ...mapGetters('cart', ['totalSeats', 'totalSeatsSelected']),
+    ...mapGetters('seats', ['claimedSeats']),
     reversedRows() {
       return [...Array(this.rows).keys()].reverse()
     }
@@ -76,6 +70,25 @@ export default {
     ...mapActions(['setCartSeats']),
     getSeatByRowAndColumn(row, column) {
       return `${String.fromCharCode(row + 65)}${column}`
+    },
+    getSeatClasses(row, column) {
+      return {
+        'has-background-light': this.claimedSeats.includes(
+          this.getSeatByRowAndColumn(row, column)
+        ),
+        'has-text-grey-light': this.claimedSeats.includes(
+          this.getSeatByRowAndColumn(row, column)
+        ),
+        'has-background-success-light':
+          this.totalSeatsSelected === this.totalSeats &&
+          this.selectedSeats.includes(this.getSeatByRowAndColumn(row, column)),
+        'has-background-danger-light':
+          this.totalSeatsSelected > this.totalSeats &&
+          this.selectedSeats.includes(this.getSeatByRowAndColumn(row, column)),
+        'has-background-link-light':
+          this.totalSeatsSelected < this.totalSeats &&
+          this.selectedSeats.includes(this.getSeatByRowAndColumn(row, column))
+      }
     },
     setSeatsFromState() {
       if (!this.cart.seats) return

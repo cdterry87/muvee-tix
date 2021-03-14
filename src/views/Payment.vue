@@ -12,10 +12,9 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import PaymentMethods from '../components/PaymentMethods/PaymentMethods'
 import PaymentSummary from '../components/PaymentSummary/PaymentSummary'
-const { mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'Payment',
@@ -23,8 +22,12 @@ export default {
     PaymentMethods,
     PaymentSummary
   },
+  computed: {
+    ...mapGetters('cart', ['seats'])
+  },
   methods: {
-    ...mapActions(['setCartPayment']),
+    ...mapActions('cart', ['setCartPayment']),
+    ...mapActions('seats', ['setClaimedSeats']),
     onSubmit(card) {
       const { type, number, expiration, cvv } = card
 
@@ -34,6 +37,9 @@ export default {
         expiration,
         cvv
       })
+
+      const seats = Object.values(this.seats)
+      this.setClaimedSeats(seats)
 
       this.$router.push('summary')
     }

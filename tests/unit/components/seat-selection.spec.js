@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import SeatSelection from '@/components/SeatSelection/SeatSelection'
 import Vuex from 'vuex'
+import seats from '@/store/seats'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -8,10 +9,15 @@ localVue.use(Vuex)
 function createWrapper(getters) {
   const store = new Vuex.Store({
     modules: {
+      seats,
       cart: {
         namespaced: true,
         state: {
-          cart: {}
+          cart: {
+            movie: {
+              id: 123
+            }
+          }
         },
         getters,
         actions: {

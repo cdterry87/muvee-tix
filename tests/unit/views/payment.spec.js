@@ -5,6 +5,7 @@ import Payment from '@/views/Payment'
 import PaymentMethods from '@/components/PaymentMethods/PaymentMethods'
 import PaymentSummary from '@/components/PaymentSummary/PaymentSummary'
 import cart from '@/store/cart'
+import seats from '@/store/seats'
 import '@/filters/currency'
 
 const localVue = createLocalVue()
@@ -16,6 +17,7 @@ const router = new VueRouter()
 describe('Payment', () => {
   const store = new Vuex.Store({
     modules: {
+      seats,
       cart: {
         ...cart
       }
