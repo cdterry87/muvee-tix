@@ -16,6 +16,7 @@
 import { setMovieDetails } from '../utils/movies'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('movies')
+const { mapActions } = createNamespacedHelpers('cart')
 
 import Card from '../components/Card/Card'
 
@@ -27,7 +28,11 @@ export default {
   computed: {
     ...mapState(['movies'])
   },
+  mounted() {
+    this.resetCartState()
+  },
   methods: {
+    ...mapActions(['resetCartState']),
     getMovieDetails(movie) {
       return setMovieDetails(movie)
     }

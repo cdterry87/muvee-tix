@@ -69,10 +69,6 @@ export default {
   created() {
     this.movie = { ...this.getMovie(this.id) }
 
-    if (JSON.stringify(this.cart.movie) !== JSON.stringify(this.movie)) {
-      this.resetCartState()
-    }
-
     this.setCartMovie(this.movie)
   },
   computed: {
@@ -88,7 +84,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setCartMovie', 'resetCartState']),
+    ...mapActions(['setCartMovie']),
     getMovieDetails(movie) {
       return setMovieDetails(movie)
     }

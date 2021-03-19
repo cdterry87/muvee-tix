@@ -72,22 +72,22 @@ export default {
       return `${String.fromCharCode(row + 65)}${column}`
     },
     getSeatClasses(row, column) {
+      const isClaimedSeat = this.claimedSeats.includes(
+        this.getSeatByRowAndColumn(row, column)
+      )
+      const isSelectedSeat = this.selectedSeats.includes(
+        this.getSeatByRowAndColumn(row, column)
+      )
+
       return {
-        'has-background-light': this.claimedSeats.includes(
-          this.getSeatByRowAndColumn(row, column)
-        ),
-        'has-text-grey-light': this.claimedSeats.includes(
-          this.getSeatByRowAndColumn(row, column)
-        ),
+        'has-background-light': isClaimedSeat,
+        'has-text-grey-light': isClaimedSeat,
         'has-background-success-light':
-          this.totalSeatsSelected === this.totalSeats &&
-          this.selectedSeats.includes(this.getSeatByRowAndColumn(row, column)),
+          this.totalSeatsSelected === this.totalSeats && isSelectedSeat,
         'has-background-danger-light':
-          this.totalSeatsSelected > this.totalSeats &&
-          this.selectedSeats.includes(this.getSeatByRowAndColumn(row, column)),
+          this.totalSeatsSelected > this.totalSeats && isSelectedSeat,
         'has-background-link-light':
-          this.totalSeatsSelected < this.totalSeats &&
-          this.selectedSeats.includes(this.getSeatByRowAndColumn(row, column))
+          this.totalSeatsSelected < this.totalSeats && isSelectedSeat
       }
     },
     setSeatsFromState() {
