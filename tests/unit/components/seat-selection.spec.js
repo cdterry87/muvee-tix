@@ -6,10 +6,9 @@ import seats from '@/store/seats'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-function createWrapper(getters) {
+function createWrapper(getters, claimedSeats = []) {
   const store = new Vuex.Store({
     modules: {
-      seats,
       cart: {
         namespaced: true,
         state: {
@@ -22,6 +21,12 @@ function createWrapper(getters) {
         getters,
         actions: {
           setCartSeats: () => ''
+        }
+      },
+      seats: {
+        ...seats,
+        getters: {
+          claimedSeats: () => claimedSeats
         }
       }
     }
@@ -94,5 +99,18 @@ describe('SeatSelection', () => {
 
     const selectedSeat = wrapper.findAll('.seat').at(1)
     expect(selectedSeat.classes('has-background-danger-light')).toBe(true)
+  })
+
+  it('disables seat selection if seat is already claimed', () => {
+    const claimedSeats = ['C3', 'B2', 'A1'] // Seats are in reverse order on the page
+    const wrapper = createWrapper(getters, claimedSeats)
+
+    const disabledSeats = wrapper.findAll(
+      '.seat.has-background-light.has-text-grey-light'
+    )
+
+    expect(disabledSeats.at(0).text()).toContain(claimedSeats[0])
+    expect(disabledSeats.at(1).text()).toContain(claimedSeats[1])
+    expect(disabledSeats.at(2).text()).toContain(claimedSeats[2])
   })
 })
