@@ -138,13 +138,13 @@ export default {
     ...mapState(['prices', 'cart']),
     ...mapGetters(['totalPrices'])
   },
-  mounted() {
+  created() {
     this.setFieldsFromState()
   },
   watch: {
     adults: {
-      immediate: true,
       handler(newValue, oldValue) {
+        console.log('newValue', newValue, oldValue)
         if (newValue !== oldValue) {
           const { tickets } = this.cart
           tickets.adults = newValue
@@ -155,7 +155,6 @@ export default {
       }
     },
     kids: {
-      immediate: true,
       handler(newValue, oldValue) {
         if (newValue !== oldValue) {
           const { tickets } = this.cart
@@ -167,7 +166,6 @@ export default {
       }
     },
     seniors: {
-      immediate: true,
       handler(newValue, oldValue) {
         if (newValue !== oldValue) {
           const { tickets } = this.cart
@@ -182,6 +180,7 @@ export default {
   methods: {
     ...mapActions(['setCartTickets']),
     onUpdate() {
+      console.log('onUpdate', this.adults)
       this.setCartTickets({
         adults: this.adults,
         kids: this.kids,
@@ -189,6 +188,8 @@ export default {
       })
     },
     setFieldsFromState() {
+      console.log('setFieldsFromState', this.cart.tickets)
+
       const { adults, kids, seniors } = this.cart.tickets
       this.adults = Number(adults)
       this.kids = Number(kids)
