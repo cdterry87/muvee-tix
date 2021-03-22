@@ -14,6 +14,12 @@ const store = new Vuex.Store({
       state: {
         movies
       }
+    },
+    cart: {
+      namespaced: true,
+      actions: {
+        resetCartState: () => jest.fn()
+      }
     }
   }
 })

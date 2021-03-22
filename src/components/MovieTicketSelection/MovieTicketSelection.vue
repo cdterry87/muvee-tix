@@ -144,7 +144,6 @@ export default {
   watch: {
     adults: {
       handler(newValue, oldValue) {
-        console.log('newValue', newValue, oldValue)
         if (newValue !== oldValue) {
           const { tickets } = this.cart
           tickets.adults = newValue
@@ -180,7 +179,6 @@ export default {
   methods: {
     ...mapActions(['setCartTickets']),
     onUpdate() {
-      console.log('onUpdate', this.adults)
       this.setCartTickets({
         adults: this.adults,
         kids: this.kids,
@@ -188,8 +186,6 @@ export default {
       })
     },
     setFieldsFromState() {
-      console.log('setFieldsFromState', this.cart.tickets)
-
       const { adults, kids, seniors } = this.cart.tickets
       this.adults = Number(adults)
       this.kids = Number(kids)
