@@ -4,6 +4,10 @@
       <h2 class="title is-size-4 has-text-centered">
         Enter your payment information
       </h2>
+      <div class="notification is-info is-light has-text-centered">
+        <b>NOTE:</b> Credit card info is NOT processed or stored and is for demo
+        purposes only, but please do NOT use real credit card info on this form.
+      </div>
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <div class="field">
