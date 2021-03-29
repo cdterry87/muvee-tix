@@ -6,13 +6,17 @@
         class="mt-2 notification subtitle is-size-6 has-text-centered is-light"
         :class="{
           'is-success': seatsRemaining === 0,
-          'is-danger': seatsRemaining < 0,
+          'is-danger': seatsRemaining < 0 || this.isOverCapacity,
           'is-info': seatsRemaining > 0
         }"
       >
         {{ message }}
       </div>
-      <SeatSelection :rows="6" :columns="10" @onSeatSelect="onSeatSelect" />
+      <SeatSelection
+        :rows="seatRows"
+        :columns="seatColumns"
+        @onSeatSelect="onSeatSelect"
+      />
       <h4 class="title is-size-5 has-text-centered">FRONT OF THEATER</h4>
       <hr />
       <div class="field is-grouped is-grouped-centered mt-4">
@@ -41,26 +45,49 @@
 
 <script>
 import SeatSelection from '../components/SeatSelection/SeatSelection'
-import { createNamespacedHelpers } from 'vuex'
-const { mapGetters, mapActions } = createNamespacedHelpers('cart')
+import { mapGetters, createNamespacedHelpers } from 'vuex'
+const { mapActions } = createNamespacedHelpers('cart')
 
 export default {
   name: 'Seats',
   components: {
     SeatSelection
   },
+  data() {
+    return {
+      seatRows: 6,
+      seatColumns: 10
+    }
+  },
   computed: {
-    ...mapGetters(['movie', 'totalSeats', 'totalSeatsSelected']),
+    ...mapGetters('cart', ['movie', 'totalSeats', 'totalSeatsSelected']),
+    ...mapGetters('seats', ['totalClaimedSeats']),
     seatsRemaining() {
       return this.totalSeats - this.totalSeatsSelected
     },
+    totalAvailableSeats() {
+      return this.seatColumns * this.seatRows
+    },
+    isOverCapacity() {
+      if (
+        this.seatsRemaining - this.totalClaimedSeats >
+        this.totalAvailableSeats
+      ) {
+        return true
+      }
+      return false
+    },
     message() {
-      if (this.seatsRemaining === 0) {
-        return 'You have selected all of your available seats. Please continue to the next step.'
-      } else if (this.seatsRemaining < 0) {
-        return 'You have selected too many seats. You must adjust your selection before continuing to the next step.'
+      if (this.isOverCapacity) {
+        return 'This theater is over capacity. Please adjust the number of tickets on your order.'
       } else {
-        return `You have ${this.seatsRemaining} seats remaining.`
+        if (this.seatsRemaining === 0) {
+          return 'You have selected all of your available seats. Please continue to the next step.'
+        } else if (this.seatsRemaining < 0) {
+          return 'You have selected too many seats. You must adjust your selection before continuing to the next step.'
+        } else {
+          return `You have ${this.seatsRemaining} seats remaining.`
+        }
       }
     }
   },
