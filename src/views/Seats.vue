@@ -17,7 +17,6 @@
         :columns="seatColumns"
         @onSeatSelect="onSeatSelect"
       />
-      <h4 class="title is-size-5 has-text-centered">FRONT OF THEATER</h4>
       <hr />
       <div class="field is-grouped is-grouped-centered mt-4">
         <div class="control">

@@ -1,7 +1,9 @@
 <template>
   <router-link :to="link" class="card__container">
     <div v-if="hasTitle" class="card-content has-text-centered">
-      <h2 class="title has-text-light is-size-5">{{ title }}</h2>
+      <h2 class="title has-text-light is-size-6">
+        {{ title.length > 30 ? title.substring(0, 30) + '...' : title }}
+      </h2>
     </div>
     <div class="card">
       <div class="card-image">

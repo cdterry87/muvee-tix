@@ -25,6 +25,14 @@
           </label>
         </td>
       </tr>
+      <tr>
+        <td
+          colspan="10"
+          class="block has-background-dark has-text-light title is-size-5 has-text-centered"
+        >
+          - FRONT OF THEATER -
+        </td>
+      </tr>
     </table>
   </div>
 </template>

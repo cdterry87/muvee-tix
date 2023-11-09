@@ -2,7 +2,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.js',
-      title: 'Muvee Tix - The best place to get your movie tickets!'
+      title: 'Muvee Tix - A FAN-tastic place to get your movie tickets!'
     }
-  }
+  },
 }

@@ -4,7 +4,7 @@
       <div
         v-for="(movie, index) in movies"
         :key="index"
-        class="column is-one-quarter-desktop is-half-tablet is-full-mobile"
+        class="column is-one-third-desktop is-half-tablet is-full-mobile"
       >
         <Card v-bind="getMovieDetails(movie)" />
       </div>
