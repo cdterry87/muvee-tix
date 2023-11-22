@@ -23,7 +23,17 @@
       <i class="fab fa-github"></i>
       View Source on GitHub
     </a>
-    <p class="mt-4">&copy; 2020 Muvee Tix</p>
+    <p class="mt-4">
+      &copy; 2020 Chase Terry. |
+      <a
+        href="https://chaseterry.com"
+        aria-label="Visit my website!"
+        title="Visit my website!"
+        target="_blank"
+        rel="noreferrer"
+        >https://chaseterry.com</a
+      >
+    </p>
   </footer>
 </template>
 
